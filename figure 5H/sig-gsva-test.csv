@@ -1,0 +1,7 @@
+,P_MHY,P_MLY,P_MHY_H,P_MLY_H,log10_FC_MHY,log10_FC_MLY,log10_FC_MHY_HC,log10_FC_MLY_HC,meta
+Phytanic_Acid_Peroxisomal_Oxidation,0.474905014,0.022098854,6.80E-05,0.000994755,-0.117708691,-0.251122121,-0.458539373,-0.41362334,"Succinic acid,Adenosine triphosphate,NAD,Oxoglutaric acid"
+Homocysteine_Degradation,0.985435486,0.036434997,0.182694471,0.001014656,-0.083346071,0.30559125,-0.180072464,-0.333416543,"L-Cystathionine,L-Serine,L-Cysteine,Homocysteine"
+Inositol_Phosphate_Metabolism,0.430433273,0.040489722,0.009390638,0.004054565,-0.118676802,-0.280627019,-0.325772226,-0.329800127,"myo-Inositol,Glucose 6-phosphate,Adenosine triphosphate,NAD"
+Aspartate_Metabolism,0.621513367,0.040489722,0.000939096,0.000333892,-0.06844997,-0.182982857,-0.11888836,-0.151283915,"Citrulline,Argininosuccinic acid,Adenosine monophosphate,Inosinic acid,Guanosine diphosphate,Adenosine triphosphate,Oxalacetic acid,Oxoglutaric acid,Adenylsuccinic acid,L-Asparagine,L-Glutamine,L-Arginine"
+Ketone_Body_Metabolism,0.026641846,0.042651705,0.194640362,0.008161468,-0.320517101,-0.254284913,-0.149775794,-0.321995003,"(R)-3-Hydroxybutyric acid,Succinic acid,NAD"
+Nicotinate_and_Nicotinamide_Metabolism,0.123092651,0.044907209,1.71E-10,7.38E-13,-0.172459306,-0.229377525,-0.690649823,-0.681353652,"Adenosine monophosphate,S-Adenosylhomocysteine,Adenosine triphosphate,NAD,Niacinamide,L-Glutamine,S-Adenosylmethionine"

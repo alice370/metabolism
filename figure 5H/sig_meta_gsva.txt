@@ -1,0 +1,7 @@
+pathway
+Phytanic Acid Peroxisomal Oxidation
+Homocysteine Degradation
+Inositol Phosphate Metabolism
+Aspartate Metabolism
+Ketone Body Metabolism
+Nicotinate and Nicotinamide Metabolism
