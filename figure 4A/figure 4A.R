@@ -1,190 +1,174 @@
-library(ggplot2)
+rm(list=ls())
+library("dplyr")
 library(tidyr)
+library(ggplot2)
 library(eoffice)
-library(dplyr)
-library(reshape)
-data <- read.csv("209sample_188metabolites_auto_log10.csv", header = TRUE,row.names = 1)
-clin<-read.csv("RA_baseline_clin.csv",check.names = F)
-data<-as.data.frame(t(data))
-data$sample<-row.names(data)
-data<-merge(clin[,c(1,7,8)],data,by='sample')
-table(data$`disease activity class`)
-H<-data[which(data$`disease activity class` =="high disease activity"),-c(1:3)]
-M<-data[which(data$`disease activity class`=="moderate disease activity"),-c(1:3)]
-L<-data[which(data$`disease activity class`==" Low disease activity"),-c(1:3)]
-D<-data[which(data$`disease activity class`=="Clinical Remission" ),-c(1:3)]
-H_median<- apply(H,2,median,na.rm=T)
-M_median<- apply(M,2,median,na.rm=T)
-L_median<- apply(L,2,median,na.rm=T)
-D_median<- apply(D,2,median,na.rm=T)
-log10_FC_DH<-D_median-H_median
-log10_FC_DM<-D_median-M_median
-log10_FC_DL<-D_median-L_median
-log10_FC_LH<-L_median-H_median
-log10_FC_LM<-L_median-M_median
-log10_FC_MH<-M_median-H_median
-P_ANOVE<-rep(NA,188)
-P_DH<-rep(NA,188)
-P_DM<-rep(NA,188)
-P_DL<-rep(NA,188)
-P_LH<-rep(NA,188)
-P_LM<-rep(NA,188)
-P_MH<-rep(NA,188)
-
-for(i in 1:188) try({
-  P_DH[i] = wilcox.test(as.numeric(D[,i]), as.numeric(H[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_DM[i] = wilcox.test(as.numeric(D[,i]), as.numeric(M[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_DL[i] = wilcox.test(as.numeric(D[,i]), as.numeric(L[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_LH[i] = wilcox.test(as.numeric(L[,i]), as.numeric(H[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_LM[i] = wilcox.test(as.numeric(L[,i]), as.numeric(M[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_MH[i] = wilcox.test(as.numeric(M[,i]), as.numeric(H[,i]), alternative = "two.sided", paired = FALSE)$p.value
-  P_ANOVE[i] = summary(aov(data[,(i+3)] ~ data$`disease activity class`, data = data))[[1]][,5][1]
-})
-test<-data.frame(colnames(data)[-c(1:3)],P_ANOVE,P_DH,P_DM,P_DL,P_LH,P_LM,P_MH,
-                 log10_FC_DH,log10_FC_DM,log10_FC_DL,log10_FC_LH,log10_FC_LM,log10_FC_MH,D_median,L_median,M_median,H_median)
-colnames(test)[1]<-'metabolites'
-write.csv(test,"disease activity class test ACPA+ RA.csv")
-
-########################Fig4A:plot of disease activity levels in different groups################
-library(pheatmap)
-data<-read.csv("disease activity class test ACPA+ RA.csv",row.names = 1,check.names = F)
-data1<-data[which(data$P_DL<0.05|data$P_LM<0.05|data$P_MH<0.05|data$P_LH<0.05|data$P_DM<0.05|data$P_DH<0.05),]
-data2<-data1[,c(15:18)]
-data2<-data.frame(round(t(apply(data2, 1, scale)),2))
-colnames(data2)<-c("Disease remission","Low disease activity","Moderate disease activity","High disease activity")
-row.names(data2)<-row.names(data1)
-bk <- c(seq(-1,0,by=0.01),seq(0.01,1,by=0.01))
-p <-pheatmap(data2,scale='none',show_rownames = T, cluster_cols = F,clustering_method = "ward",border_color = NA,cutree_rows=4, 
-             color = c(colorRampPalette(colors = c("#3C82B9","white"))(length(bk)/2),
-                       colorRampPalette(colors = c("white","#EE3434"))(length(bk)/2)),
-             cellwidth = 25,cellheight = 8,
-             breaks=bk)
-topptx(p,'disease-activity-cluster.pptx')
-
-
-row_cluster = cutree(p$tree_row,k=4)
-{
-  newOrder = data2[p$tree_row$order,]
-  newOrder[,ncol(newOrder)+1]=row_cluster[match(rownames(newOrder),names(row_cluster))]
-  colnames(newOrder)[ncol(newOrder)]="Cluster"
-  head(newOrder)
-  unique(newOrder$Cluster)
-  newOrder$Cluster = paste0("cluster",newOrder$Cluster)
-  newOrder$gene = rownames(newOrder)
-  head(newOrder)
-  write.csv(newOrder,"disease-activity-4-cluster.csv")#导出数据改名
-  library(reshape2)
-  data_new = melt(newOrder)
-  head(data_new)
-  library(stringr)
-  data_new$group1<-data_new$variable
-  data_new$group2<-str_c(data_new$gene)
-  data_new$group3<-str_c(data_new$Cluster,data_new$variable)
-  library(ggplot2)
-  library(ggthemes)
-  library(ggpubr)
-  medians<-aggregate(data_new$value,list(data_new$group3),median)
-  medians$variable<-str_sub(medians$Group.1,9,-1)
-  medians$new<-str_sub(medians$Group.1,1,8)
-  medians$new1<-str_sub(medians$Group.1,1,8)
+library(scales)
+squash_axis <- function(from, to, factor) {
+  # Args:
+  #   from: left end of the axis
+  #   to: right end of the axis
+  #   factor: the compression factor of the range [from, to]
   
-  medians$new
+  trans <- function(x) {    
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < to
+    ito <- !is_na & x >= to
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from)/factor
+    x[ito] <- from + (to - from)/factor + (x[ito] - to)
+    
+    return(x)
+  }
+  
+  inv <- function(x) {
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < from + (to - from)/factor
+    ito <- !is_na & x >= from + (to - from)/factor
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from) * factor
+    x[ito] <- to + (x[ito] - (from + (to - from)/factor))
+    
+    return(x)
+  }
+  
+  # return the transformation and inverse transformation
+  return(scales::trans_new("squash_axis", trans, inv))
 }
-{p1<-ggplot(data_new[data_new$Cluster == "cluster1", ], aes(x = variable, y = value, group = variable)) +
-    # Violin plot with grouping and coloring by variable
-    geom_violin(aes(fill = variable), alpha = 0.7, size = 0.8) +
-    geom_line(data=medians[medians$new1=="cluster1",],aes(variable,x,group=new),size=1,color="black")+
-    # Boxplot overlaid on violin plots
-    geom_boxplot(aes(group = variable), outlier.shape = NA, width = 0.42, size = 0.5, fill = "white") +
-    # Manual color scale for variable groups
-    scale_fill_manual(values = c("Disease remission" = "#638759", "Low disease activity" = "#A1B4D8", "Moderate disease activity" = "#eca75e","High disease activity"="#D8ACAC"), guide = FALSE) +
-    # Labels for axes
-    labs(x = "", y = "median level") +
-    # Classic theme with custom modifications
-    theme_classic() +
-    theme(
-      strip.background.x = element_rect(color = "white", fill = "white"),
-      strip.text.x = element_text(size = 13, color = "black"),
-      axis.line = element_line(color = "black"),
-      axis.ticks = element_line(color = "black"),
-      panel.background = element_rect(fill = "white"),
-      panel.grid = element_blank(),
-      axis.text.y = element_text(size = 13, color = "black", vjust = 0.5, hjust = 1),
-      axis.text.x = element_blank(),
-      title = element_text(size = 13, color = "black", vjust = 0.5, hjust = 0.5)
-    ) 
+
+
+data<-read.csv("IAR-185metabolites-log10-auto.csv",row.names = 1)
+clin<-read.csv('at risk of RA_follow up.csv',check.names = F)
+data<-data[,clin$Sample[clin$`Follow-up visits`=='yes']]
+merge1<-as.data.frame(t(data))
+merge1$Sample<-row.names(merge1)
+merge1<-merge(clin[,c(1,5)],merge1,by="Sample")
+merge1$`Developed RA`
+
+converter <- merge1 %>% filter(`Developed RA` == "yes")
+other <- merge1 %>% filter(`Developed RA` == "no")
+
+
+significance_matrix <- matrix(0, nrow = nrow(data), ncol = 100)
+rownames(significance_matrix) <- row.names(data)
+####
+FC_matrix <- matrix(0, nrow = nrow(data), ncol = 100)
+rownames(FC_matrix) <- row.names(data)
+
+
+n_iterations <- 100
+
+
+n_sample <- 4
+
+set.seed(123)
+metabolite_cols <- colnames(merge1)[3:187]
+for (i in 1:n_iterations) {
   
-  p2<-ggplot(data_new[data_new$Cluster == "cluster2", ], aes(x = variable, y = value, group = variable)) +
-    # Violin plot with grouping and coloring by variable
-    geom_violin(aes(fill = variable), alpha = 0.7, size = 0.8) +
-    geom_line(data=medians[medians$new1=="cluster2",],aes(variable,x,group=new),size=1,color="black")+
-    # Boxplot overlaid on violin plots
-    geom_boxplot(aes(group = variable), outlier.shape = NA, width = 0.42, size = 0.5, fill = "white") +
-    # Manual color scale for variable groups
-    scale_fill_manual(values = c("Disease remission" = "#638759", "Low disease activity" = "#A1B4D8", "Moderate disease activity" = "#eca75e","High disease activity"="#D8ACAC"), guide = FALSE) +
-    # Labels for axes
-    labs(x = "", y = "median level") +
-    # Classic theme with custom modifications
-    theme_classic() +
-    theme(
-      strip.background.x = element_rect(color = "white", fill = "white"),
-      strip.text.x = element_text(size = 13, color = "black"),
-      axis.line = element_line(color = "black"),
-      axis.ticks = element_line(color = "black"),
-      panel.background = element_rect(fill = "white"),
-      panel.grid = element_blank(),
-      axis.text.y = element_text(size = 13, color = "black", vjust = 0.5, hjust = 1),
-      axis.text.x = element_blank(),
-      title = element_text(size = 13, color = "black", vjust = 0.5, hjust = 0.5)
-    ) 
   
-  p3<-ggplot(data_new[data_new$Cluster == "cluster3", ], aes(x = variable, y = value, group = variable)) +
-    # Violin plot with grouping and coloring by variable
-    geom_violin(aes(fill = variable), alpha = 0.7, size = 0.8) +
-    geom_line(data=medians[medians$new1=="cluster3",],aes(variable,x,group=new),size=1,color="black")+
-    # Boxplot overlaid on violin plots
-    geom_boxplot(aes(group = variable), outlier.shape = NA, width = 0.42, size = 0.5, fill = "white") +
-    # Manual color scale for variable groups
-    scale_fill_manual(values = c("Disease remission" = "#638759", "Low disease activity" = "#A1B4D8", "Moderate disease activity" = "#eca75e","High disease activity"="#D8ACAC"), guide = FALSE) +
-    # Labels for axes
-    labs(x = "", y = "median level") +
-    # Classic theme with custom modifications
-    theme_classic() +
-    theme(
-      strip.background.x = element_rect(color = "white", fill = "white"),
-      strip.text.x = element_text(size = 13, color = "black"),
-      axis.line = element_line(color = "black"),
-      axis.ticks = element_line(color = "black"),
-      panel.background = element_rect(fill = "white"),
-      panel.grid = element_blank(),
-      axis.text.y = element_text(size = 13, color = "black", vjust = 0.5, hjust = 1),
-      axis.text.x = element_blank(),
-      title = element_text(size = 13, color = "black", vjust = 0.5, hjust = 0.5)
-    ) 
-  p4<-ggplot(data_new[data_new$Cluster == "cluster4", ], aes(x = variable, y = value, group = variable)) +
-    # Violin plot with grouping and coloring by variable
-    geom_violin(aes(fill = variable), alpha = 0.7, size = 0.8) +
-    geom_line(data=medians[medians$new1=="cluster4",],aes(variable,x,group=new),size=1,color="black")+
-    # Boxplot overlaid on violin plots
-    geom_boxplot(aes(group = variable), outlier.shape = NA, width = 0.42, size = 0.5, fill = "white") +
-    # Manual color scale for variable groups
-    scale_fill_manual(values = c("Disease remission" = "#638759", "Low disease activity" = "#A1B4D8", "Moderate disease activity" = "#eca75e","High disease activity"="#D8ACAC"), guide = FALSE) +
-    # Labels for axes
-    labs(x = "", y = "median level") +
-    # Classic theme with custom modifications
-    theme_classic() +
-    theme(
-      strip.background.x = element_rect(color = "white", fill = "white"),
-      strip.text.x = element_text(size = 13, color = "black"),
-      axis.line = element_line(color = "black"),
-      axis.ticks = element_line(color = "black"),
-      panel.background = element_rect(fill = "white"),
-      panel.grid = element_blank(),
-      axis.text.y = element_text(size = 13, color = "black", vjust = 0.5, hjust = 1),
-      axis.text.x = element_blank(),
-      title = element_text(size = 13, color = "black", vjust = 0.5, hjust = 0.5)
-    ) 
+  sampled_other <-other %>% sample_n(n_sample)
+  
+  
+  sampled_data <- bind_rows(sampled_other, converter)
+  
+  
+  for (met in metabolite_cols) {
+    
+    
+    converter_met <- sampled_data %>% filter(`Developed RA` == "yes") %>% pull(met)
+    other_met <- sampled_data %>% filter(`Developed RA` == "no") %>% pull(met)
+    
+    
+    test_result <- try(wilcox.test(converter_met, other_met, exact = FALSE), silent = TRUE)
+    
+    
+    if(class(test_result) == "try-error") {
+      next  
+    }
+    
+    p_value <- test_result$p.value
+    FC<-mean(converter_met)-mean(other_met)
+    
+    significance_matrix[met, i] <- p_value
+    FC_matrix[met, i]<-FC
+    
+  }
+  
+  if(i %% 10 == 0) {
+    cat("complete", i, "sampling")
+  }
 }
-a<-ggarrange(p1,p2,p3,p4,nrow=4,ncol =1,legend = NULL)
-a
-ggsave("disease activity class cluster4_ACPA+ RA.pdf", width = 5, height = 20)
+
+significant_counts <- apply(significance_matrix, 1, function(x) sum(x < 0.05))
+
+
+result_df <- data.frame(
+  Metabolite = rownames(significance_matrix),
+  Significant_Count = significant_counts
+)
+
+significance_df <- as.data.frame(significance_matrix) %>%
+  mutate(Metabolite = rownames(significance_matrix))
+
+
+write.csv(significance_matrix, "significance_100_Iteration.csv", row.names = TRUE)
+write.csv(FC_matrix, "FC_100_Iteration.csv", row.names = TRUE)
+write.csv(result_df, "significance_count.csv", row.names = FALSE)
+sig_meta<-result_df$Metabolite[result_df$Significant_Count>=10]
+# Sort data by count in descending order
+df <- result_df %>% arrange(desc(Significant_Count))
+sig_meta<-df$Metabolite[df$Significant_Count>=10]
+# Create color gradient: from orange to gold for counts >= 10, light gray for < 10
+df$color <- ifelse(df$Significant_Count >= 10, 
+                   scales::gradient_n_pal(c("orange", "gold"))(scales::rescale(df$Significant_Count[df$Significant_Count >= 10])), 
+                   "lightgray")
+
+nrow(df[df$Significant_Count>0,])
+# Plot using ggplot2
+p <- ggplot(df[df$Significant_Count>0,], aes(y = reorder(Metabolite, Significant_Count), x = Significant_Count, fill = color)) +
+  geom_bar(stat = "identity") +
+  scale_fill_identity() +  # Use the colors directly
+  geom_vline(xintercept = 10, linetype = "dashed", color = "gray") +  # Add horizontal dashed line at y = 10
+  geom_text(aes(x=0,label = ifelse(Significant_Count >= 10, Metabolite, "")), 
+            hjust = 0) +  
+  labs(y = "", x = "Count", title = "") +
+  theme_classic()+theme(axis.text.y = element_blank())+
+  coord_trans(y = squash_axis(0, 35, 10))
+print(p)
+topptx(p,'significant_count.pptx')
+
+result <- data.frame(Element = character(), pvalue=numeric(),FC = numeric(), stringsAsFactors = FALSE)
+
+for (row_name in sig_meta) {
+  row_index <- which(rownames(significance_matrix) == row_name)
+  col_indices <- which(significance_matrix[row_index, ] < 0.05)
+  
+  for (col_index in col_indices) {
+    result <- rbind(result, data.frame(Element = row_name, 
+                                       pvalue=significance_matrix[row_index, col_index],
+                                       Value = FC_matrix[row_index, col_index]))
+  }
+}
+write.csv(result, "sig_meta_FC_in sig_result.csv", row.names = FALSE)
+####plot####
+result$Element <- factor(result$Element, levels = rev(unique(result$Element)))
+
+plot <- ggplot(result, aes(x = Value, y = Element)) +
+  geom_boxplot(aes(group = Element), width=0.5,outlier.shape = NA,lwd = 0.2,fatten= 0.2) +
+  geom_jitter(width = 0.1, size = 2, alpha = 0.6,color='#154599') +
+  theme_classic() +
+  xlab("") +
+  ylab("") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "#8b0000")+
+  theme(axis.text = element_blank(),
+        axis.line = element_line(linewidth = 0.35))
+print(plot)
+ggsave('sig_meta_FC.pdf',plot=plot,width=3,height=4)

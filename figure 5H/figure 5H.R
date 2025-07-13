@@ -3,6 +3,7 @@ library(tidyr)
 library(ggplot2)
 library(eoffice)
 library(GSVA)
+library(ggpubr)
 rm(list=ls())
 file_content <- readLines("gsea_geneset.txt")
 
@@ -23,7 +24,7 @@ for (line in file_content) {
     gsea_geneset[[list_name]] <- list_elements
   }
 }
-data<-read.csv('561sample_188meta_log10_auto.csv',row.names = 1)
+data<-read.csv('561sample_185meta_log10_auto.csv',row.names = 1)
 clin<-read.csv('sample_information.csv',check.names = F)
 
 param <- gsvaParam(as.matrix(data), gsea_geneset,kcdf = c("Gaussian"),minSize = 3)

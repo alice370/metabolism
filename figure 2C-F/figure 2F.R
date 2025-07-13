@@ -1,0 +1,86 @@
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(eoffice)
+rm(list = ls())
+results_df<-read.csv('GEEglm_meta for table S2A.csv')
+metabolites <- c("Arachidonic acid", "12-HETE", "13-HODE", 
+                 "NAD",  "Oxidized glutathione", 
+                 "Cystine", "6-Methyladenosine",'S-Adenosylmethionine','Methionine')
+selected_results_df <- results_df[
+  results_df$Metabolite %in% metabolites,
+]
+
+df_sub <- selected_results_df %>%
+  select(
+    Metabolite,
+    starts_with("Estimate."), 
+    starts_with("CI_lower."),
+    starts_with("CI_upper.")
+  )
+
+long_df <- df_sub %>%
+  pivot_longer(
+    cols = -Metabolite,
+    names_to  = c("Variable", "Comparison"),
+    names_pattern = "(.*)\\.(RH|RI|IH)$",  
+    values_to = "Value"
+  ) %>%
+  
+  pivot_wider(
+    names_from  = Variable,
+    values_from = Value
+  ) %>%
+  
+  mutate(
+    Comparison = case_when(
+      Comparison == "RH" ~ "RA vs. Health",
+      Comparison == "RI" ~ "RA vs. IAR",
+      Comparison == "IH" ~ "IAR vs. Health",
+      TRUE ~ Comparison
+    )
+  )
+
+
+
+long_df$Comparison <- factor(long_df$Comparison, levels = rev(c("RA vs. Health", "RA vs. IAR", "IAR vs. Health")))
+long_df$Metabolite<-factor(long_df$Metabolite,levels =metabolites)
+library(ggplot2)
+
+p <- ggplot(long_df, aes(y = Comparison)) +
+  
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  
+  geom_hline(aes(yintercept = Comparison), linetype = "dashed", color = "grey") +
+  
+  geom_errorbarh(aes(xmin = CI_lower, xmax = CI_upper),
+                 height = 0.2, color = "black") +
+  
+  geom_point(aes(x = Estimate),
+             size = 0.8, color = "black") +
+  
+  
+  theme_classic() +
+  
+  labs(
+    x = "Coefficient",
+    y = ""   
+  ) +
+  
+  theme(
+    plot.title       = element_text(hjust = 0.5, size = 14, color = "black", family = "sans"),
+    axis.title.x     = element_text(size = 12, color = "black", family = "sans"),
+    axis.text.x      = element_text(size = 12, color = "black", family = "sans"),
+    axis.text.y      = element_text(size = 12, color = "black", family = "sans"),
+    axis.ticks.y     = element_blank(),
+    axis.line.y      = element_blank(),
+    legend.position  = "none",
+    strip.background = element_blank(),
+    strip.text       = element_text(size = 12, color = "black", family = "sans")  
+  ) +
+  facet_wrap(~ Metabolite, scales = "free_x")
+
+
+print(p)
+
+ggsave("forest_plot_9_up.pdf", width = 6.5, height = 5.5) 

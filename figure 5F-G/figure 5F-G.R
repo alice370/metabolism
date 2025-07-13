@@ -2,37 +2,38 @@ library(ggrepel)
 library(ggplot2)
 library(ggpubr)
 library(eoffice)
+library(readxl)
+clin <- read_excel("Sample_information.xlsx")
 rm(list = ls())
-data<-read.csv('561sample_188meta_log10_auto.csv',row.names = 1)
-clin<-read.csv('sample_information.csv',check.names = F)
-
+data<-read.csv('561Sample_185meta_log10_auto.csv',row.names = 1)
+table(clin$`Response Classification`)
 data <- as.data.frame(t(data))
-MLYA<-clin$sample[which(clin$DRUG =="MTQ+LEF"&
-                          clin$`response classification` %in% c('Good Response', 'Moderate Response'))]
+MLYA<-clin$Sample[which(clin$Drug =="MTX+LEF"&
+                          clin$`Response Classification` %in% c('Response'))]
 MLYA<-data[MLYA,]
-MLYB<-clin$`follow up-sample`[which(clin$DRUG =="MTQ+LEF"&
-                                      clin$`response classification` %in% c('Good Response', 'Moderate Response'))]
+MLYB<-clin$`Follow up-Sample`[which(clin$Drug =="MTX+LEF"&
+                                      clin$`Response Classification` %in% c('Response'))]
 MLYB<-data[MLYB,]
-MLNA<-clin$sample[which(clin$DRUG =="MTQ+LEF"&
-                          clin$`response classification` %in% c('No Response'))]
+MLNA<-clin$Sample[which(clin$Drug =="MTX+LEF"&
+                          clin$`Response Classification` %in% c('No Response'))]
 MLNA<-data[MLNA,]
-MLNB<-clin$`follow up-sample`[which(clin$DRUG =="MTQ+LEF"&
-                                      clin$`response classification` %in% c('No Response'))]
+MLNB<-clin$`Follow up-Sample`[which(clin$Drug =="MTX+LEF"&
+                                      clin$`Response Classification` %in% c('No Response'))]
 MLNB<-data[MLNB,]
-MHYA<-clin$sample[which(clin$DRUG =="MTQ+HCQ"&
-                          clin$`response classification` %in% c('Good Response', 'Moderate Response'))]
+MHYA<-clin$Sample[which(clin$Drug =="MTX+HCQ"&
+                          clin$`Response Classification` %in% c('Response'))]
 MHYA<-data[MHYA,]
-MHYB<-clin$`follow up-sample`[which(clin$DRUG =="MTQ+HCQ"&
-                                      clin$`response classification` %in% c('Good Response', 'Moderate Response'))]
+MHYB<-clin$`Follow up-Sample`[which(clin$Drug =="MTX+HCQ"&
+                                      clin$`Response Classification` %in% c('Response'))]
 MHYB<-data[MHYB,]
-MHNA<-clin$sample[which(clin$DRUG =="MTQ+HCQ"&
-                          clin$`response classification` %in% c('No Response'))]
+MHNA<-clin$Sample[which(clin$Drug =="MTX+HCQ"&
+                          clin$`Response Classification` %in% c('No Response'))]
 MHNA<-data[MHNA,]
-MHNB<-clin$`follow up-sample`[which(clin$DRUG =="MTQ+HCQ"&
-                                      clin$`response classification` %in% c('No Response'))]
+MHNB<-clin$`Follow up-Sample`[which(clin$Drug =="MTX+HCQ"&
+                                      clin$`Response Classification` %in% c('No Response'))]
 MHNB<-data[MHNB,]
 
-HC<-clin$sample[clin$Group=='Health']
+HC<-clin$Sample[clin$Group=='Health']
 HC<-data[HC,]
 MHYA_median<- apply(MHYA,2,median,na.rm=T)
 MHYB_median<- apply(MHYB,2,median,na.rm=T)
@@ -50,14 +51,14 @@ log10_FC_MLN<-MLNB_median-MLNA_median
 log10_FC_MHY_HC<-MHYA_median-HC_median
 log10_FC_MLY_HC<-MLYA_median-HC_median
 
-P_MHY<-rep(NA,188)
-P_MHN<-rep(NA,188)
-P_MLY<-rep(NA,188)
-P_MLN<-rep(NA,188)
-P_MHY_H<-rep(NA,188)
-P_MLY_H<-rep(NA,188)
+P_MHY<-rep(NA,185)
+P_MHN<-rep(NA,185)
+P_MLY<-rep(NA,185)
+P_MLN<-rep(NA,185)
+P_MHY_H<-rep(NA,185)
+P_MLY_H<-rep(NA,185)
 
-for(i in 1:188) try({
+for(i in 1:185) try({
   P_MHY[i] = wilcox.test(as.numeric(MHYA[,i]), as.numeric(MHYB[,i]), alternative = "two.sided", paired = TRUE)$p.value
   P_MHN[i] = wilcox.test(as.numeric(MHNA[,i]), as.numeric(MHNB[,i]), alternative = "two.sided", paired = TRUE)$p.value
   P_MLY[i] = wilcox.test(as.numeric(MLYA[,i]), as.numeric(MLYB[,i]), alternative = "two.sided", paired = TRUE)$p.value
@@ -69,8 +70,8 @@ for(i in 1:188) try({
 test<-data.frame(colnames(data),P_MHY,P_MHN,P_MLY,P_MLN,P_MHY_H,P_MLY_H,
                  log10_FC_MHY,log10_FC_MHN,log10_FC_MLY,log10_FC_MLN,log10_FC_MHY_HC,log10_FC_MLY_HC)
 colnames(test)[1]<-'metabolites'
-write.csv(test,"drug-effect-test.csv")
-test<-read.csv("drug-effect-test.csv",row.names = 1)
+write.csv(test,"Drug-effect-test-185meta.csv")
+test<-read.csv("Drug-effect-test.csv",row.names = 1)
 data1<-test
 data1$ML<- "no"
 data1$ML[(data1$P_MLY<0.05)&(data1$log10_FC_MLY>0)] <- "up"

@@ -1,6 +1,6 @@
 library(ggplot2)
 library(eoffice)
-data<-read.csv('188meta_QC13.csv')
+data<-read.csv('185meta_QC13.csv')
 cv <- apply(data[,4:16], 1, function(x) {
    mean_x <- mean(x, na.rm = TRUE)
   sd_x <- sd(x, na.rm = TRUE)

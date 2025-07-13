@@ -1,0 +1,186 @@
+"Metabolite","Significant_Count","p_median"
+"Acetoacetate",9,0.481151289234573
+"4-Aminobutanoate",3,0.54827463724095
+"Malonic acid",17,0.28751146169966
+"3-Hydroxybutyric acid",22,0.256909457621951
+"Uracil",3,0.645911833921892
+"Maleic acid",1,0.593354189216806
+"N-Acetylglycine",0,0.690419430501071
+"Guanidoacetic acid",12,0.2289859672484
+"2-Hydroxyisovaleric acid",8,0.236858476397105
+"Succinic acid",4,0.488414627529872
+"Methylmalonic acid",39,0.0849679525085009
+"Benzoic acid",3,0.457411875633741
+"Methyl-4-methyl-2-oxopentanoate",3,0.349681214302836
+"2-Hydroxyisocaproate",3,0.38583361276825
+"Glutarate",18,0.174547062528908
+"Malate",16,0.14507538547371
+"Adenine",6,0.436356894834115
+"Hypoxanthine",3,0.581187844063264
+"Adipic acid",7,0.328148643829768
+"Mevalonic acid",47,0.0624062476414221
+"Xanthine",4,0.39482850535941
+"Dopamine",0,0.651352057216059
+"Orotic acid",4,0.459497511604572
+"Aminoadipic acid",4,0.457601570416989
+"Phenylpyruvate",8,0.383139157428727
+"Phosphoenolpyruvic acid",75,0.0100587683030749
+"Homogentisic acid",2,0.595025177273483
+"Uric acid",9,0.249088075473806
+"Dihydroxyacetone phosphate",18,0.298848002476542
+"Glyceraldehyde 3-phosphate",19,0.225165722481164
+"Shikimic acid",19,0.229288502150476
+"Citrulline",0,0.510966483517606
+"Hippuric acid",2,0.544559246279911
+"Myo-Inositol",4,0.307621400644119
+"Lactose",6,0.319169487080425
+"4-Hydroxyphenylpyruvic acid",44,0.0609492183293165
+"4-Pyridoxic acid",3,0.526890104232937
+"2-Phosphoglyceric acid",8,0.418622483999238
+"Azelaic acid",41,0.0649688427836538
+"4-Hydroxy-2-quinolinecarboxylic acid",3,0.613948859388615
+"Glucuronic acid",5,0.290269471239061
+"Indoxyl sulfate",34,0.104278094648637
+"Pantothenic acid",2,0.508256082120492
+"Cystathionine",10,0.392843863864787
+"3-Nitrotyrosine",2,0.394354279285196
+"Myristic acid",19,0.202391866738364
+"Ribose 5-phosphate",8,0.408994760887673
+"Biotin",1,0.594241793423551
+"Fructose 6-phosphate",46,0.0562130961365407
+"Glucose 6-phosphate",2,0.52403824334592
+"Heptadecanoic acid",5,0.348635290158468
+"Linolenate",2,0.527502791002871
+"Alpha-Linolenic acid",6,0.588650074805505
+"Xanthosine",53,0.0427009820062485
+"Argininosuccinic acid",58,0.0394382083652722
+"13-HODE",3,0.565041957395719
+"Arachidonic acid",6,0.280495594151289
+"dCMP",37,0.0914247500784237
+"Glutathione",5,0.462850863337277
+"N-Acetylneuraminic acid",11,0.30545286597783
+"12-HETE",3,0.597230568350993
+"5-Thymidylic acid",1,0.441677412714523
+"Cytidine monophosphate",14,0.299159791724379
+"Glucose 1,6-bisphosphate",30,0.127169152177061
+"Fructose 1,6-bisphosphate",0,0.583369856945983
+"Alpha-Lactose",33,0.0900903550891002
+"Sucrose",25,0.120764833170483
+"3',5'-Cyclic GMP",4,0.456766898075279
+"Gibberellin A3",6,0.433567483396681
+"Adenosine monophosphate",2,0.43766633600847
+"Inosinic acid",0,0.612401184346368
+"Prostaglandin E2",7,0.346288306720626
+"Orotidylic acid",1,0.59356317698314
+"S-Adenosylhomocysteine",3,0.518520741396729
+"Uridine 5'-diphosphate",9,0.278365232492298
+"Adenosine 5'-diphosphate",18,0.258480893145596
+"Folic acid",7,0.312948511455278
+"Guanosine 5'-diphosphate",42,0.0842662198655549
+"5-Methyltetrahydrofolic acid",2,0.501173320722788
+"Glycocholic acid",18,0.253931953369936
+"Adenosine 5'-triphosphate",7,0.436786817971271
+"Taurocholic acid",2,0.591779899999564
+"Oxidized glutathione",6,0.509877641375555
+"NAD",3,0.538055721746882
+"Lactic acid",1,0.438605982199168
+"Fumarate",90,0.00684267717297232
+"Citraconic acid",4,0.349486595159774
+"Allantoin",6,0.483049764266686
+"Aconitic acid",0,0.662942344633641
+"Citric acid",1,0.58119283965582
+"Chenodeoxycholic acid glycine conjugate",10,0.34980667128573
+"Malondialdehyde",1,0.492543364104596
+"2-Methylpropanoate",17,0.218518215404516
+"Glyceric acid",4,0.286973759900754
+"Alpha-Ketoisovaleric acid",1,0.639784053586611
+"Methylsuccinic acid",2,0.446056314595752
+"Oxalacetic acid",0,0.680919133248734
+"Oxoglutaric acid",5,0.377246145004269
+"2-Hydroxyglutarate",2,0.635070083533901
+"Fructose",4,0.278493746230725
+"Glucose 1-phosphate",2,0.354720720539787
+"Geranyl-PP",8,0.387094083343326
+"Adenylsuccinic acid",5,0.359960502083506
+"Glycerol 3-phosphate",4,0.305678461522846
+"Glyceraldehyde",2,0.638573348764601
+"Pyruvic acid",1,0.578308925797035
+"Methyl-3-methyl-2-oxopentanoate",12,0.22816885989979
+"Isocitric acid",5,0.328436983327403
+"Homovanillic acid",5,0.362085130027442
+"Trimethylamine",2,0.531080166856364
+"Glycine",3,0.361438942519447
+"Trimethylamine N-oxide",3,0.520279514402966
+"Sarcosine",2,0.522630103608362
+"Alanine",3,0.39257459624475
+"Cadaverine",4,0.588517922819074
+"3-Aminoisobutyric acid",2,0.591731213918912
+"Choline",2,0.513858790547333
+"Dimethylglycine",1,0.615205393369238
+"Serine",2,0.481523006086822
+"Cytosine",2,0.624641399492094
+"Creatinine",2,0.52620152806898
+"Proline",4,0.44919014886975
+"5-Aminopentanoic acid",2,0.61003699357969
+"Betaine",2,0.564990198044623
+"Valine",3,0.715195261074551
+"Indole",26,0.232196133118598
+"Homoserine",2,0.525415258395189
+"Threonine",2,0.538061813173287
+"Cysteine",0,0.646369760517666
+"Niacinamide",8,0.287929704485741
+"Taurine",3,0.302205587509387
+"Pyroglutamic acid",5,0.345558594078628
+"Pipecolic acid",0,0.570274712763317
+"N-Acetylputrescine",0,0.710453907704043
+"Creatine",0,0.639784392947616
+"4-Hydroxyproline",2,0.525287954412962
+"5-Aminolevulinic acid",4,0.55990122798701
+"Isoleucine",2,0.552676708460629
+"Leucine",1,0.477511945891417
+"Ornithine",2,0.639168868088391
+"Asparagine",2,0.348776376411922
+"Homocysteine",0,0.561524366148832
+"N-Methylnicotinamide",0,0.629421491124014
+"Tyramine",7,0.385343523007574
+"4-Acetamidobutanoic acid",2,0.563872957585331
+"Spermidine",1,0.652165392764564
+"Glutamine",4,0.48832789117494
+"Lysine",2,0.499556186377434
+"Glutamate",1,0.54164824076327
+"Methionine",3,0.49855126896992
+"Histidine",0,0.752095262169963
+"Tryptamine",3,0.568591571174516
+"Carnitine",3,0.453235816925346
+"Phenylalanine",2,0.433070773032299
+"1-Methyl-histidine",1,0.559755670682949
+"Arginine",0,0.700251575705437
+"Indoleacetic acid",1,0.60583534719598
+"Glucosamine",16,0.222136621697021
+"Tyrosine",9,0.283741319633693
+"N8-Acetylspermidine",1,0.708390818524679
+"Acetylcarnitine",1,0.451861734511184
+"Tryptophan",2,0.476890947933603
+"Indolelactic acid",2,0.435074737141446
+"Kynurenine",2,0.533879723239251
+"3-Hydroxy-kynurenin",7,0.552172314791111
+"Melatonin",17,0.254256955851182
+"Cystine",4,0.405646097473203
+"Cytidine",1,0.596114351120631
+"N1-Acetylspermine",20,0.182990634735926
+"Uridine",3,0.55083674600161
+"Adenosine",6,0.427007765969255
+"Inosine",25,0.188485132607176
+"6-Methyladenosine",0,0.692247754383206
+"Guanosine monophosphate",13,0.194072003785725
+"S-Adenosylmethionine",6,0.350395573005966
+"Alpha-Tocopherol",3,0.606263432624429
+"Bilirubin",17,0.248892658461242
+"1-Methyladenosine",1,0.365979012905373
+"Serotonin",34,0.0927969537461631
+"Xanthurenic acid",5,0.291593425895972
+"4-Trimethylammoniobutanoic acid",2,0.56929548922328
+"Epinephrine",0,0.678160773858373
+"Indolepyruvate",5,0.484273408776714
+"1-Methylguanosine",3,0.679839907594427
+"Normetanephrine",12,0.366720737919467

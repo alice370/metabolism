@@ -2,10 +2,9 @@ library(mixOmics)
 library(ggplot2)
 library(ggrepel)
 library(eoffice)
-metabolite_data <- read.csv("364sample-188metabolites-log10-auto.csv", row.names = 1)
+metabolite_data <- read.csv("364sample_185metabolites_mean_log10.csv", row.names = 1)
 clin<-read.csv('clin_new.csv')
 metabolite_data<-metabolite_data[,clin$Sample]
-write.csv(metabolite_data,"364sample-188metabolites-log10-auto.csv")
 group_vector<- clin$Group[match(colnames(metabolite_data),clin$Sample)]
 dt<-as.data.frame(t(metabolite_data))
 

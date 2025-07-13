@@ -1,0 +1,10 @@
+number,feature,coef,MTX+LEF_responder,MTX+LEF_non-responder
+126,Indole,0.368563683,28,29
+80,Glycocholic acid,-0.144586291,30,43
+23,Orotic acid,0.137652425,30,43
+129,L-Cysteine,-0.128836804,9,23
+22,Dopamine,-0.064889169,14,29
+82,Taurocholic acid,-0.047880402,30,43
+177,Bilirubin,0.037822776,30,42
+109,Homovanillic acid,-0.007196678,30,43
+6,Maleic acid,0.005032899,30,43

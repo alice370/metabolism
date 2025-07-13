@@ -1,0 +1,189 @@
+metabolic,N_P_nonNA,N_N_nonNA,detected_P,detected_N,NA_test_pvalue,NA_test_used
+Acetoacetate,183,14,100.00%,100.00%,1,Fisher
+3-Aminobutanoic acid,183,14,100.00%,100.00%,1,Fisher
+Malonic acid,183,14,100.00%,100.00%,1,Fisher
+(R)-3-Hydroxybutyric acid,183,14,100.00%,100.00%,1,Fisher
+Uracil,183,14,100.00%,100.00%,1,Fisher
+Maleic acid,183,14,100.00%,100.00%,1,Fisher
+Acetylglycine,183,14,100.00%,100.00%,1,Fisher
+Guanidoacetic acid,183,14,100.00%,100.00%,1,Fisher
+3-Hydroxyisovaleric acid,183,14,100.00%,100.00%,1,Fisher
+Succinic acid,183,14,100.00%,100.00%,1,Fisher
+Methylmalonic acid,183,14,100.00%,100.00%,1,Fisher
+Benzoic acid,183,14,100.00%,100.00%,1,Fisher
+Methyl (R)-4-methyl-2-oxopentanoate,180,14,98.36%,100.00%,1,Fisher
+Hydroxyisocaproic acid,183,14,100.00%,100.00%,1,Fisher
+Glutarate,183,14,100.00%,100.00%,1,Fisher
+sinapoyl-(S)-malate,183,14,100.00%,100.00%,1,Fisher
+Adenine,183,14,100.00%,100.00%,1,Fisher
+Hypoxanthine,183,14,100.00%,100.00%,1,Fisher
+Adipic acid,183,14,100.00%,100.00%,1,Fisher
+Mevalonic acid,183,14,100.00%,100.00%,1,Fisher
+Xanthine,183,14,100.00%,100.00%,1,Fisher
+Orotic acid,183,14,100.00%,100.00%,1,Fisher
+Aminoadipic acid,183,14,100.00%,100.00%,1,Fisher
+Enol-phenylpyruvate,183,14,100.00%,100.00%,1,Fisher
+Phosphoenolpyruvic acid,183,14,100.00%,100.00%,1,Fisher
+Homogentisic acid,183,14,100.00%,100.00%,1,Fisher
+Uric acid,183,14,100.00%,100.00%,1,Fisher
+Dihydroxyacetone phosphate,183,14,100.00%,100.00%,1,Fisher
+D-Glyceraldehyde 3-phosphate,183,14,100.00%,100.00%,1,Fisher
+Shikimic acid,183,14,100.00%,100.00%,1,Fisher
+Citrulline,183,14,100.00%,100.00%,1,Fisher
+Hippuric acid,183,14,100.00%,100.00%,1,Fisher
+myo-Inositol,183,14,100.00%,100.00%,1,Fisher
+lactose,183,14,100.00%,100.00%,1,Fisher
+4-Hydroxyphenylpyruvic acid,183,14,100.00%,100.00%,1,Fisher
+4-Pyridoxic acid,183,14,100.00%,100.00%,1,Fisher
+2-Phosphoglyceric acid,183,14,100.00%,100.00%,1,Fisher
+Azelaic acid,183,14,100.00%,100.00%,1,Fisher
+"4,6-Dihydroxy-2-quinolinecarboxylic acid",183,14,100.00%,100.00%,1,Fisher
+D-Glucuronic acid,183,14,100.00%,100.00%,1,Fisher
+Indoxyl sulfate,183,14,100.00%,100.00%,1,Fisher
+Pantothenic acid,183,14,100.00%,100.00%,1,Fisher
+L-Cystathionine,183,14,100.00%,100.00%,1,Fisher
+3-Nitrotyrosine,183,14,100.00%,100.00%,1,Fisher
+Myristic acid,183,14,100.00%,100.00%,1,Fisher
+D-Ribose 5-phosphate,183,14,100.00%,100.00%,1,Fisher
+Biotin,183,14,100.00%,100.00%,1,Fisher
+Fructose 6-phosphate,180,14,98.36%,100.00%,1,Fisher
+Glucose 6-phosphate,180,14,98.36%,100.00%,1,Fisher
+Heptadecanoic acid,183,14,100.00%,100.00%,1,Fisher
+Linoelaidic acid,183,14,100.00%,100.00%,1,Fisher
+Alpha-Linolenic acid,183,14,100.00%,100.00%,1,Fisher
+Xanthosine,183,14,100.00%,100.00%,1,Fisher
+Argininosuccinic acid,183,14,100.00%,100.00%,1,Fisher
+13-HODE,183,14,100.00%,100.00%,1,Fisher
+Arachidonic acid,183,14,100.00%,100.00%,1,Fisher
+N-Acetylneuraminic acid,183,14,100.00%,100.00%,1,Fisher
+Tetranor 12-HETE,183,14,100.00%,100.00%,1,Fisher
+5-Thymidylic acid,171,13,93.44%,92.86%,1,Fisher
+"Alpha-D-Glucose 1,6-bisphosphate",183,14,100.00%,100.00%,1,Fisher
+"Fructose 1,6-bisphosphate",182,14,99.45%,100.00%,1,Fisher
+Alpha-Lactose,183,14,100.00%,100.00%,1,Fisher
+Sucrose,183,14,100.00%,100.00%,1,Fisher
+Gibberellin A3,183,14,100.00%,100.00%,1,Fisher
+Adenosine monophosphate,183,14,100.00%,100.00%,1,Fisher
+Inosinic acid,183,14,100.00%,100.00%,1,Fisher
+Prostaglandin E2,183,14,100.00%,100.00%,1,Fisher
+Orotidylic acid,180,14,98.36%,100.00%,1,Fisher
+S-Adenosylhomocysteine,183,14,100.00%,100.00%,1,Fisher
+Uridine 5'-diphosphate,180,14,98.36%,100.00%,1,Fisher
+ADP,177,14,96.72%,100.00%,1,Fisher
+Folic acid,138,11,75.41%,78.57%,1,Fisher
+Guanosine diphosphate,180,14,98.36%,100.00%,1,Fisher
+5-Methyltetrahydrofolic acid,127,10,69.40%,71.43%,1,Fisher
+Glycocholic acid,183,14,100.00%,100.00%,1,Fisher
+Adenosine triphosphate,180,14,98.36%,100.00%,1,Fisher
+Taurocholic acid,183,14,100.00%,100.00%,1,Fisher
+L-Lactic acid,183,14,100.00%,100.00%,1,Fisher
+Dimethyl fumarate,183,14,100.00%,100.00%,1,Fisher
+Citraconic acid,183,14,100.00%,100.00%,1,Fisher
+Allantoin,183,14,100.00%,100.00%,1,Fisher
+cis-Aconitic acid,183,14,100.00%,100.00%,1,Fisher
+Citric acid,183,14,100.00%,100.00%,1,Fisher
+Chenodeoxycholic acid glycine conjugate,182,14,99.45%,100.00%,1,Fisher
+Malondialdehyde,183,14,100.00%,100.00%,1,Fisher
+Phenylmethyl 2-methylpropanoate,183,14,100.00%,100.00%,1,Fisher
+Glyceric acid,183,14,100.00%,100.00%,1,Fisher
+Alpha-ketoisovaleric acid,183,14,100.00%,100.00%,1,Fisher
+Methylsuccinic acid,183,14,100.00%,100.00%,1,Fisher
+Oxalacetic acid,183,14,100.00%,100.00%,1,Fisher
+Oxoglutaric acid,183,14,100.00%,100.00%,1,Fisher
+2-Hydroxyglutarate,183,14,100.00%,100.00%,1,Fisher
+D-Fructose,183,14,100.00%,100.00%,1,Fisher
+Glucose 1-phosphate,183,14,100.00%,100.00%,1,Fisher
+Geranyl-PP,183,14,100.00%,100.00%,1,Fisher
+Adenylsuccinic acid,183,14,100.00%,100.00%,1,Fisher
+Glycerol 3-phosphate,183,14,100.00%,100.00%,1,Fisher
+Glyceraldehyde,183,14,100.00%,100.00%,1,Fisher
+Pyruvic acid,183,14,100.00%,100.00%,1,Fisher
+Methyl (R)-3-methyl-2-oxopentanoate,183,14,100.00%,100.00%,1,Fisher
+Isocitric acid,183,14,100.00%,100.00%,1,Fisher
+Homovanillic acid,183,14,100.00%,100.00%,1,Fisher
+Trimethylamine,183,14,100.00%,100.00%,1,Fisher
+Glycine,183,14,100.00%,100.00%,1,Fisher
+Trimethylamine N-oxide,183,14,100.00%,100.00%,1,Fisher
+Sarcosine,183,14,100.00%,100.00%,1,Fisher
+L-Alanine,183,14,100.00%,100.00%,1,Fisher
+Cadaverine,183,14,100.00%,100.00%,1,Fisher
+2-Aminoisobutyric acid,183,14,100.00%,100.00%,1,Fisher
+Choline,183,14,100.00%,100.00%,1,Fisher
+Dimethylglycine,183,14,100.00%,100.00%,1,Fisher
+L-Serine,183,14,100.00%,100.00%,1,Fisher
+Creatinine,183,14,100.00%,100.00%,1,Fisher
+L-Proline,183,14,100.00%,100.00%,1,Fisher
+5-Aminopentanoic acid,183,14,100.00%,100.00%,1,Fisher
+Betaine,183,14,100.00%,100.00%,1,Fisher
+L-Valine,183,14,100.00%,100.00%,1,Fisher
+L-Homoserine,183,14,100.00%,100.00%,1,Fisher
+L-Threonine,183,14,100.00%,100.00%,1,Fisher
+Niacinamide,183,14,100.00%,100.00%,1,Fisher
+Taurine,183,14,100.00%,100.00%,1,Fisher
+Pyroglutamic acid,183,14,100.00%,100.00%,1,Fisher
+L-Pipecolic acid,183,14,100.00%,100.00%,1,Fisher
+N-Acetylputrescine,183,14,100.00%,100.00%,1,Fisher
+Creatine,183,14,100.00%,100.00%,1,Fisher
+4-Hydroxyproline,183,14,100.00%,100.00%,1,Fisher
+5-Aminolevulinic acid,183,14,100.00%,100.00%,1,Fisher
+L-Isoleucine,183,14,100.00%,100.00%,1,Fisher
+L-Leucine,183,14,100.00%,100.00%,1,Fisher
+Ornithine,183,14,100.00%,100.00%,1,Fisher
+L-Asparagine,183,14,100.00%,100.00%,1,Fisher
+Homocysteine,183,14,100.00%,100.00%,1,Fisher
+N-Methylnicotinamide,183,14,100.00%,100.00%,1,Fisher
+4-Acetamidobutanoic acid,183,14,100.00%,100.00%,1,Fisher
+L-Glutamine,183,14,100.00%,100.00%,1,Fisher
+L-Lysine,183,14,100.00%,100.00%,1,Fisher
+DL-Glutamate,183,14,100.00%,100.00%,1,Fisher
+L-Methionine,183,14,100.00%,100.00%,1,Fisher
+Cysteamine,169,13,92.35%,92.86%,1,Fisher
+L-Histidine,183,14,100.00%,100.00%,1,Fisher
+L-Carnitine,183,14,100.00%,100.00%,1,Fisher
+L-Phenylalanine,183,14,100.00%,100.00%,1,Fisher
+1-Methyl-L-histidine,183,14,100.00%,100.00%,1,Fisher
+L-Arginine,183,14,100.00%,100.00%,1,Fisher
+Indoleacetic acid,183,14,100.00%,100.00%,1,Fisher
+L-Tyrosine,183,14,100.00%,100.00%,1,Fisher
+N8-Acetylspermidine,183,14,100.00%,100.00%,1,Fisher
+L-Acetylcarnitine,183,14,100.00%,100.00%,1,Fisher
+L-Tryptophan,183,14,100.00%,100.00%,1,Fisher
+Indolelactic acid,183,14,100.00%,100.00%,1,Fisher
+L-Kynurenine,183,14,100.00%,100.00%,1,Fisher
+L-Cystine,183,14,100.00%,100.00%,1,Fisher
+Cytidine,183,14,100.00%,100.00%,1,Fisher
+Uridine,183,14,100.00%,100.00%,1,Fisher
+Inosine,183,14,100.00%,100.00%,1,Fisher
+Alpha-Tocopherol,183,14,100.00%,100.00%,1,Fisher
+Bilirubin,181,14,98.91%,100.00%,1,Fisher
+Acetamidopropanal,183,14,100.00%,100.00%,1,Fisher
+1-methyladenosine,183,14,100.00%,100.00%,1,Fisher
+Serotonin,183,14,100.00%,100.00%,1,Fisher
+Xanthurenic acid,183,14,100.00%,100.00%,1,Fisher
+4-Trimethylammoniobutanoic acid,183,14,100.00%,100.00%,1,Fisher
+Epinephrine,183,14,100.00%,100.00%,1,Fisher
+1-Methylguanosine,183,14,100.00%,100.00%,1,Fisher
+NAD,61,5,33.33%,35.71%,1,Chi-square
+Indolepyruvate,117,9,63.93%,64.29%,1,Chi-square
+3-hydroxy-L-kynurenin,71,6,38.80%,42.86%,0.987341213,Chi-square
+Dopamine,103,7,56.28%,50.00%,0.859382096,Chi-square
+L-Cysteine,80,7,43.72%,50.00%,0.859382096,Chi-square
+Spermidine,136,10,74.32%,71.43%,0.75963126,Fisher
+Cytosine,140,10,76.50%,71.43%,0.745367904,Fisher
+Melatonin,154,13,84.15%,92.86%,0.699204015,Fisher
+Guanosine monophosphate,155,13,84.70%,92.86%,0.697661471,Fisher
+Glutathione,74,7,40.44%,50.00%,0.675148685,Chi-square
+2'-O-Methyladenosine,165,12,90.16%,85.71%,0.638933302,Fisher
+Cyclic GMP,166,12,90.71%,85.71%,0.629961342,Fisher
+dCMP,167,14,91.26%,100.00%,0.609803159,Fisher
+Glucosamine,168,14,91.80%,100.00%,0.606051267,Fisher
+Carnosine,168,14,91.80%,100.00%,0.606051267,Fisher
+Normetanephrine,97,9,53.01%,64.29%,0.590677422,Chi-square
+Adenosine,150,13,81.97%,92.86%,0.471195466,Fisher
+Tyramine,42,5,22.95%,35.71%,0.45046984,Chi-square
+Cytidine monophosphate,162,14,88.52%,100.00%,0.3702752,Fisher
+Tryptamine,153,10,83.61%,71.43%,0.269112189,Fisher
+S-Adenosylmethionine,20,3,10.93%,21.43%,0.21407691,Fisher
+Indole,135,13,73.77%,92.86%,0.195740758,Fisher
+N1-Acetylspermine,52,7,28.42%,50.00%,0.162495333,Chi-square
+Oxidized glutathione,17,3,9.29%,21.43%,0.157198427,Fisher

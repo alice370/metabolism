@@ -1,0 +1,303 @@
+rm(list=ls())
+library(geepack)
+library(tidyr)
+library(ggplot2)
+library(eoffice)
+library(readxl)
+library(ggrepel)
+####Geeglm-DAS28####
+data<-read.csv("364sample-185metabolites-log10-auto.csv",row.names = 1)
+clin <- read_excel("RA information.xlsx")
+merge1 <- as.data.frame(t(data))
+merge1$Sample<-row.names(merge1)
+merge1<-merge(clin,merge1,by="Sample")
+merge1$Gender <- as.numeric( ifelse(merge1$Gender == "Female", 1,
+                                   ifelse(merge1$Gender == "Male", 0, merge1$Gender)))
+table(merge1$Gender)
+merge1$ID<-c(1:nrow(merge1))
+metabolite_list<-colnames(merge1)[23:207]
+
+results_list <- list()
+names(merge1)[1:22]
+for (meta in metabolite_list) {
+  formula <- as.formula(paste0("`", meta, "`~ `DAS28-CRP`  + Gender + Age + BMI + smoke + BP + BG + BL"))
+  
+  model <- geeglm(formula, data = merge1, id = ID, family = gaussian, corstr = "exchangeable")
+  coef_summary <- summary(model)$coefficients
+  
+  est <- coef_summary[2, "Estimate"]
+  se  <- coef_summary[2, "Std.err"]
+  ci_lower <- if (!is.na(se)) est - 1.96 * se else NA
+  ci_upper <- if (!is.na(se)) est + 1.96 * se else NA
+  p_value <- coef_summary[2, "Pr(>|W|)"]
+  
+
+  results_list[[meta]] <- data.frame(
+    Metabolite = meta,
+    Estimate = est,
+    Std.err = se,
+    CI_lower = ci_lower,
+    CI_upper = ci_upper,
+    p_value = p_value, 
+    stringsAsFactors = FALSE
+  )
+}
+
+final_results <- do.call(rbind, results_list)
+final_results$sig <-ifelse(final_results$p_value<0.05, 'sig','not sig')
+table(final_results$sig)
+write.csv(final_results,'Geeglm_DAS28.csv')   
+####plot####
+data1<-read.csv('Geeglm_DAS28.csv',row.names = 1)
+data1$DAS28_lm <- ifelse(data1$p_value< 0.05 & data1$Estimate > 0, "positive",
+                       ifelse(data1$p_value < 0.05 & data1$Estimate < 0, "negative", "n.s."))
+
+top_10_indices <- order(data1$p_value)[1:10]
+significant_points <- data.frame(
+  beta.lm = data1$Estimate[top_10_indices],
+  p.value = -log10(data1$p_value[top_10_indices]),
+  metabolic = data1$Metabolite[top_10_indices]
+)
+
+####figure 4C####
+gg<-ggplot(data1, aes(x = data1$Estimate, y = -log10(p_value), color = data1$Estimate, size = -log10(p_value))) +
+  geom_hline(yintercept = -log10(0.05), linetype = 2, color = "grey", size = 1) +
+  geom_point() +
+  scale_color_gradient2(low = "darkblue", mid='grey', high = "darkred") + 
+  scale_size_continuous(range = c(2, 5)) + 
+  theme(panel.background = element_rect(fill = 'transparent', color = 'black')) +
+  labs(
+    x = "coefficients-DAS28-CRP",
+    y = "-Log10(p value)"
+  )+ theme_classic()+
+  theme(axis.title = element_text(size = 8),
+        axis.text = element_text(size = 8),
+        legend.position = 'none') + 
+  geom_text_repel(
+  data = significant_points,
+  aes(x = beta.lm, y = p.value, label = metabolic),
+  size = 5,
+  color = "black",
+  box.padding = unit(0.4, "lines"),
+  segment.color = "black",
+  segment.size = 0.6,
+  min.segment.length = 0.5,
+  max.overlaps = 5
+)+
+  theme_minimal(base_size = 16) +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.title = element_text(color = "black", size = 16),
+    axis.ticks  = element_line(color = "black", linewidth = 0.5),
+    axis.text = element_text(color = "black", size = 15),
+    legend.position = 'bottom'
+  )
+
+gg
+ggsave("DAS28_Geeglm_plot.pdf", plot = gg, height = 4.5, width = 4.5)
+topptx(gg,filename = "DAS28_Geeglm_plot.pptx")####for legend####
+
+####figure 4D####
+library('ggvenn')
+gee_sig<-final_results$Metabolite[final_results$sig =='sig']
+M_U_result<-read.csv('disease activity class test.csv')
+M_U_sig<-M_U_result$metabolite[which(M_U_result$P_DL<0.05|M_U_result$P_LM<0.05|M_U_result$P_MH<0.05|M_U_result$P_LH<0.05|M_U_result$P_DM<0.05|M_U_result$P_DH<0.05)]
+con<-intersect(M_U_sig,gee_sig)
+write.csv(con,'intersect_gee_MU_test.csv')
+library(eoffice)
+
+venn_list <- list(
+  "significant in gee" = gee_sig,
+  "significant in comparison between disease activity groups" = M_U_sig
+)
+p1<-ggvenn(venn_list,show_percentage = F,show_elements = F,label_sep = ",",
+           digits = 1,stroke_color = "white",
+           fill_color = c("#DC00007F", "#D7A246"),
+           set_name_color = "black")
+p1
+topptx(p1,filename = "intersect_Gee_test.pptx")
+
+####figure 4E####
+rm(list=ls())
+library("dplyr")
+library(tidyr)
+library(ggplot2)
+library(eoffice)
+library(ggrepel)
+library(scales)
+squash_axis <- function(from, to, factor) {
+  # Args:
+  #   from: left end of the axis
+  #   to: right end of the axis
+  #   factor: the compression factor of the range [from, to]
+  
+  trans <- function(x) {    
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < to
+    ito <- !is_na & x >= to
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from)/factor
+    x[ito] <- from + (to - from)/factor + (x[ito] - to)
+    
+    return(x)
+  }
+  
+  inv <- function(x) {
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < from + (to - from)/factor
+    ito <- !is_na & x >= from + (to - from)/factor
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from) * factor
+    x[ito] <- to + (x[ito] - (from + (to - from)/factor))
+    
+    return(x)
+  }
+  
+  # return the transformation and inverse transformation
+  return(scales::trans_new("squash_axis", trans, inv))
+}
+
+
+data<-read.csv("364sample-185metabolites-log10-auto.csv",row.names = 1)
+clin <- read_excel("RA information.xlsx")
+merge1 <- as.data.frame(t(data))
+
+merge1$Sample<-row.names(merge1)
+merge1<-merge(clin,merge1,by="Sample")
+merge1$Gender <- as.numeric( ifelse(merge1$Gender == "Female", 1,
+                                    ifelse(merge1$Gender == "Male", 0, merge1$Gender)))
+table(merge1$Gender)
+test<-read.csv('disease activity class test.csv')
+
+sig <- data.frame(metabolites = character(), compare=character(),p = numeric(), FC = numeric(), stringsAsFactors = FALSE)
+
+
+for (i in 1:nrow(test)) {
+  for (j in 3:8) {
+
+    if (test[i, j] < 0.05) {
+
+      sig <- rbind(sig, data.frame(
+        metabolites = test[i, 1],
+        compare=colnames(test)[j],
+        p = test[i, j],
+        FC = test[i, j + 6]
+      ))
+    }
+  }
+}
+table(sig$compare)
+table(merge1$`Disease Activity Class`)
+H<-merge1[which(merge1$`Disease Activity Class` =="high disease activity"),]
+M<-merge1[which(merge1$`Disease Activity Class`=="moderate disease activity"),]
+L<-merge1[which(merge1$`Disease Activity Class`=="Low disease activity"),]
+D<-merge1[which(merge1$`Disease Activity Class`=="Clinical Remission" ),]
+
+for (i in 1:nrow(sig)) {
+
+  meta <- sig[i, 1]
+
+  compare_str <- sig[i, "compare"]
+  A<- get(substr(compare_str, nchar(compare_str)-1,nchar(compare_str)-1))
+  B<-get(substr(compare_str, nchar(compare_str),nchar(compare_str)))
+  
+  combined_df <- rbind(
+    A[, c(17:19,22, which(colnames(A) == meta))],
+    B[, c(17:19,22, which(colnames(B) == meta))]
+  )
+  
+  
+  for (j in 1:4) {
+    
+    cor_test <- cor.test(combined_df[, j], combined_df[, 5])
+    
+    
+    var_name <- colnames(combined_df)[j]
+    
+    
+    sig[i, paste0(var_name, "_correlation")] <- cor_test$estimate  
+    sig[i, paste0(var_name, "_pvalue")] <- cor_test$p.value       
+  }
+} 
+write.csv(sig,'correlation analysis.csv')
+
+
+####prepare for plot####
+cor_range<-range(sig[,c(5,7,9,11)])
+sig_split <- split(sig, sig$compare)
+for (name in names(sig_split)) {
+  small_table <- sig_split[[name]]
+  long_table <- small_table %>%
+    pivot_longer(
+      cols = 5:12,
+      names_to = "var_type",
+      values_to = "value"
+    ) %>%
+    mutate(
+      var = sub("_.*", "", var_type),          # Extracting the first part of column name 'VAS_correlation' as 'VAS'
+      metric_type = sub(".*_", "", var_type)   # Extracting 'pvalue' or 'correlation' from the second part
+    ) %>%
+    select(-var_type) %>% 
+    pivot_wider(
+      names_from = metric_type,  
+      values_from = value      
+    )
+  long_table <- long_table %>%
+    mutate(
+      color = scales::col_numeric(
+        palette = c("blue", "white", "red"),  
+        domain = range(cor_range) 
+      )(correlation)
+    )
+  
+  
+  top5_metabolites <- long_table %>%
+    filter(pvalue < 0.05) %>% 
+    arrange(pvalue) %>%        
+    slice(1:5)     
+  
+  
+  plot <-long_table %>%
+    ggplot(aes(x = -log10(pvalue), y = var, color = correlation)) +
+    geom_vline(xintercept = -log10(0.05), linetype = "dashed", color = "grey")+
+    geom_point(size=4) +
+    scale_color_gradient2(
+      low = "#24108e", mid = "white", high = "#de3024", midpoint = 0,
+      limits =cor_range)+
+    labs(
+      title = name,
+      x = "-Log10(p value)",
+      y = "",
+      color = "Correlation"
+    ) +
+    theme_minimal()+
+    geom_text_repel(
+      data = top5_metabolites, 
+      aes(label = metabolites), 
+      size = 3.5, 
+      box.padding = 0.2,
+      point.padding = 0.3,color='black'
+    ) +
+    theme(legend.position = 'none',
+          axis.line = element_line(color = "black"),
+          axis.title = element_text(color = "black"),
+          axis.ticks  = element_line(color = "black", linewidth = 0.5),
+          axis.text = element_text(color = "black"))
+  assign(paste0(name,'_p'),plot)
+}
+library(patchwork)
+combined_plot <- (P_DH_p | P_DM_p | P_DL_p) / (P_LH_p | P_LM_p | P_MH_p)
+combined_plot
+ggsave("combined_plot.pdf", plot = combined_plot, width = 12, height = 4)
+
+

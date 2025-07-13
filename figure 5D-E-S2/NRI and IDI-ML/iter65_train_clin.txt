@@ -1,0 +1,32 @@
+ _________________________________________
+ 
+     Reclassification table    
+ _________________________________________
+
+ Outcome: absent 
+  
+             Updated Model
+Initial Model [0,0.504) [0.504,1]  % reclassified
+    [0,0.504)        26         3              10
+    [0.504,1]         0         1               0
+
+ 
+ Outcome: present 
+  
+             Updated Model
+Initial Model [0,0.504) [0.504,1]  % reclassified
+    [0,0.504)         5         9              64
+    [0.504,1]         0         7               0
+
+ 
+ Combined Data 
+  
+             Updated Model
+Initial Model [0,0.504) [0.504,1]  % reclassified
+    [0,0.504)        31        12              28
+    [0.504,1]         0         8               0
+ _________________________________________
+
+ NRI(Categorical) [95% CI]: 0.3286 [ 0.0912 - 0.5659 ] ; p-value: 0.00666 
+ NRI(Continuous) [95% CI]: 1.5048 [ 1.1654 - 1.8441 ] ; p-value: 0 
+ IDI [95% CI]: 0.3873 [ 0.2982 - 0.4765 ] ; p-value: 0 

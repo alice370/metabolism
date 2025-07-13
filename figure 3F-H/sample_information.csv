@@ -1,0 +1,156 @@
+﻿Sample,Group,Gender,Age
+PRA001,At-risk of RA,Male,61
+PRA002,At-risk of RA,Female,32
+PRA003,At-risk of RA,Male,58
+PRA004,At-risk of RA,Male,70
+PRA005,At-risk of RA,Male,59
+PRA006,At-risk of RA,Male,32
+PRA007,At-risk of RA,Female,48
+PRA008,At-risk of RA,Female,40
+PRA009,At-risk of RA,Female,66
+PRA010,At-risk of RA,Female,49
+PRA011,At-risk of RA,Male,64
+PRA012,At-risk of RA,Female,54
+PRA013,At-risk of RA,Female,58
+PRA014,At-risk of RA,Male,53
+PRA015,At-risk of RA,Male,58
+PRA016,At-risk of RA,Female,46
+PRA017,At-risk of RA,Female,55
+PRA018,At-risk of RA,Female,29
+PRA019,At-risk of RA,Female,48
+PRA020,At-risk of RA,Female,60
+PRA021,At-risk of RA,Female,47
+PRA022,At-risk of RA,Male,44
+PRA023,At-risk of RA,Female,43
+PRA024,At-risk of RA,Male,52
+PRA025,At-risk of RA,Male,41
+PRA026,At-risk of RA,Male,59
+PRA027,At-risk of RA,Male,45
+PRA028,At-risk of RA,Male,51
+PRA029,At-risk of RA,Male,74
+PRA030,At-risk of RA,Female,54
+PRA031,At-risk of RA,Male,44
+PRA032,At-risk of RA,Male,45
+PRA033,At-risk of RA,Male,44
+PRA034,At-risk of RA,Male,45
+PRA035,At-risk of RA,Male,45
+PRA036,At-risk of RA,Female,32
+PRA037,At-risk of RA,Female,49
+PRA038,At-risk of RA,Female,42
+PRA039,At-risk of RA,Female,45
+PRA040,At-risk of RA,Female,50
+PRA041,At-risk of RA,Male,37
+PRA042,At-risk of RA,Female,46
+PRA043,At-risk of RA,Female,46
+PRA044,At-risk of RA,Female,66
+PRA045,At-risk of RA,Female,49
+PRA046,At-risk of RA,Male,60
+PRA047,At-risk of RA,Male,49
+PRA048,At-risk of RA,Female,54
+PRA049,At-risk of RA,Female,37
+PRA050,At-risk of RA,Female,47
+PRA051,At-risk of RA,Male,71
+PRA052,At-risk of RA,Female,42
+PRA053,At-risk of RA,Male,52
+PRA054,At-risk of RA,Female,48
+PRA055,At-risk of RA,Male,38
+PRA056,At-risk of RA,Female,47
+HP001,Health,Female,39
+HP002,Health,Male,55
+HP003,Health,Male,47
+HP004,Health,Male,54
+HP005,Health,Male,43
+HP006,Health,Male,66
+HP007,Health,Male,65
+HP008,Health,Male,52
+HP009,Health,Male,57
+HP010,Health,Male,58
+HP011,Health,Male,57
+HP012,Health,Male,58
+HP013,Health,Male,58
+HP014,Health,Male,44
+HP015,Health,Male,51
+HP016,Health,Male,50
+HP017,Health,Male,47
+HP018,Health,Male,51
+HP019,Health,Male,43
+HP020,Health,Male,63
+HP021,Health,Male,52
+HP022,Health,Female,46
+HP023,Health,Female,52
+HP024,Health,Female,54
+HP025,Health,Female,44
+HP026,Health,Female,65
+HP027,Health,Female,41
+HP029,Health,Female,56
+HP030,Health,Female,49
+HP031,Health,Female,56
+HP032,Health,Female,53
+HP033,Health,Female,47
+HP034,Health,Female,66
+HP035,Health,Female,55
+HP036,Health,Female,40
+HP037,Health,Female,40
+HP038,Health,Female,62
+HP039,Health,Female,58
+HP040,Health,Female,55
+HP041,Health,Female,42
+HP042,Health,Female,49
+HP043,Health,Female,50
+HP044,Health,Female,52
+HP045,Health,Female,53
+HP046,Health,Female,53
+HP047,Health,Female,50
+HP048,Health,Female,67
+HP049,Health,Female,40
+HP050,Health,Female,54
+HP051,Health,Female,52
+HP052,Health,Female,57
+HP053,Health,Female,45
+HP054,Health,Female,42
+HP055,Health,Female,40
+HP056,Health,Female,40
+HP057,Health,Female,47
+HP058,Health,Female,66
+HP059,Health,Female,47
+HP060,Health,Female,40
+HP061,Health,Female,46
+HP062,Health,Female,40
+HP063,Health,Female,50
+HP064,Health,Female,52
+HP065,Health,Female,53
+HP066,Health,Female,40
+HP067,Health,Female,49
+HP068,Health,Female,45
+HP069,Health,Female,51
+HP070,Health,Female,47
+HP071,Health,Female,47
+HP072,Health,Female,44
+HP073,Health,Female,44
+HP074,Health,Female,64
+HP075,Health,Female,40
+HP076,Health,Female,49
+HP077,Health,Female,65
+HP078,Health,Female,61
+HP079,Health,Female,51
+HP080,Health,Female,43
+HP081,Health,Female,60
+HP082,Health,Female,44
+HP083,Health,Female,40
+HP084,Health,Female,49
+HP085,Health,Female,48
+HP086,Health,Female,40
+HP087,Health,Female,54
+HP088,Health,Female,54
+HP089,Health,Female,43
+HP090,Health,Female,41
+HP091,Health,Female,62
+HP092,Health,Female,44
+HP093,Health,Female,59
+HP094,Health,Female,41
+HP095,Health,Female,53
+HP096,Health,Female,50
+HP097,Health,Female,42
+HP098,Health,Female,38
+HP099,Health,Female,76
+HP100,Health,Female,39

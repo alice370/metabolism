@@ -1,0 +1,33 @@
+Table S5B: Candidate metabolite features selected via LASSO regression.,,,,,,,
+MTX+LEF,,,,MTX+HCQ,,,
+rank,feature,coefficient,abs_coefficient,rank,feature,coefficient,abs_coefficient
+1,Indole,0.368563683,0.368563683,1,Inosinic acid,1.969967926,1.969967926
+2,Glycocholic acid,-0.144586291,0.144586291,2,Hypoxanthine,-1.540779052,1.540779052
+3,Orotic acid,0.137652425,0.137652425,3,Cytosine,1.412746971,1.412746971
+4,Cysteine,-0.128836804,0.128836804,4,5-Thymidylic acid,1.312805093,1.312805093
+5,Dopamine,-0.064889169,0.064889169,5,Adenosine triphosphate,-1.063998188,1.063998188
+6,Taurocholic acid,-0.047880402,0.047880402,6,Phenylpyruvate,-0.942547269,0.942547269
+7,Bilirubin,0.037822776,0.037822776,7,1-Methyladenosine,-0.890237655,0.890237655
+8,Homovanillic acid,-0.007196678,0.007196678,8,Argininosuccinic acid,-0.861822661,0.861822661
+9,Maleic acid,0.005032899,0.005032899,9,Trimethylamine,0.808101284,0.808101284
+,,,,10,Aconitic acid,-0.777706156,0.777706156
+,,,,11,Xanthine,-0.742473955,0.742473955
+,,,,12,Sucrose,0.7166879,0.7166879
+,,,,13,N1-Acetylspermine,0.645191447,0.645191447
+,,,,14,N-Acetylneuraminic acid,0.628277914,0.628277914
+,,,,15,5-Aminopentanoic acid,-0.620774129,0.620774129
+,,,,16,Proline,-0.610984286,0.610984286
+,,,,17,Adenosine,-0.586332329,0.586332329
+,,,,18,Ribose 5-phosphate,-0.580356789,0.580356789
+,,,,19,Uridine 5'-diphosphate,-0.552858712,0.552858712
+,,,,20,Linolenic acid,-0.52717942,0.52717942
+,,,,21,"Glucose 1,6-bisphosphate",-0.454127907,0.454127907
+,,,,22,Orotic acid,-0.430494701,0.430494701
+,,,,23,Xanthurenic acid,-0.39271341,0.39271341
+,,,,24,dCMP,-0.381913152,0.381913152
+,,,,25,Homogentisic acid,0.319990129,0.319990129
+,,,,26,Orotidylic acid,0.208069428,0.208069428
+,,,,27,Mevalonic acid,-0.191083084,0.191083084
+,,,,28,Geranyl-PP,0.175632933,0.175632933
+,,,,29,Indole,-0.069450485,0.069450485
+,,,,30,Betaine,0.051490376,0.051490376

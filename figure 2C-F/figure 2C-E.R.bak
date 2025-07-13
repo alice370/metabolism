@@ -1,0 +1,578 @@
+setwd("C:/Users/alice/Desktop/实验数据/代谢组/数据处理/Code/figure 2C-E")
+library(geepack)  
+library(readxl)
+rm(list = ls())
+IAR_information <- read_excel("IAR information.xlsx")
+RA_information <- read_excel("RA information.xlsx")
+HC_information <- read_excel("HC information.xlsx")
+RA_information$group <- "RA"
+IAR_information$group <- "IAR"
+HC_information$group <- "HC"
+metabolites_data <- read.csv("364sample_185metabolites_mean_log10.csv",row.names = 1)
+metabolites_data<-as.data.frame(t(metabolites_data))
+metabolites_data$Sample<-row.names(metabolites_data)
+# 只保留需要的列（确保列名一致）
+RA_sub  <- RA_information[, c("Sample", 'Gender','Age','smoke',"BMI", "BP", "BG", "BL", "group")]
+colnames(RA_sub)[2:3]<-c('gender','age')
+IAR_sub <- IAR_information[, c("Sample", 'gender','age','smoke',"BMI", "BP", "BG", "BL", "group")]
+HC_sub  <- HC_information[, c("Sample", 'gender','age','smoke',"BMI", "BP", "BG", "BL", "group")]
+# 合并
+combined_data <- rbind(RA_sub, IAR_sub, HC_sub)
+####RA vs HC####
+RH_df<-combined_data[combined_data$group%in%c('RA','HC'),]
+RH_df<-merge(RH_df,metabolites_data,by='Sample',all.x = TRUE)
+RH_df$group <- as.numeric(ifelse(RH_df$group == "RA", 1,
+                                 ifelse(RH_df$group == "HC", 0, RH_df$group)))
+RH_df$gender <- as.numeric( ifelse(RH_df$gender == "Female", 1,
+                                   ifelse(RH_df$gender == "Male", 0, RH_df$gender)))
+table(RH_df$group)
+table(RH_df$gender)
+RH_df$ID<-c(1:nrow(RH_df))
+metabolite_list<-colnames(RH_df)[10:194]
+
+RH_results_list <- list()
+
+for (meta in metabolite_list) {
+  formula <- as.formula(paste0("`", meta, "`~ group  + gender + age + BMI + smoke + BP + BG + BL"))
+  
+  model <- geeglm(formula, data = RH_df, id = ID, family = gaussian, corstr = "exchangeable")
+  coef_summary <- summary(model)$coefficients
+  
+  est <- coef_summary[2, "Estimate"]
+  se  <- coef_summary[2, "Std.err"]
+  ci_lower <- if (!is.na(se)) est - 1.96 * se else NA
+  ci_upper <- if (!is.na(se)) est + 1.96 * se else NA
+  p_value <- coef_summary[2, "Pr(>|W|)"]
+  
+  # 无论有无值，都保存
+  RH_results_list[[meta]] <- data.frame(
+    Metabolite = meta,
+    Estimate = est,
+    Std.err = se,
+    CI_lower = ci_lower,
+    CI_upper = ci_upper,
+    p_value = p_value,  
+    stringsAsFactors = FALSE
+  )
+}
+
+RH_final_results <- do.call(rbind, RH_results_list)
+RH_final_results$sig <-ifelse(RH_final_results$p_value<0.05, 'sig','not sig')
+table(RH_final_results$sig)
+
+write.csv(RH_final_results,'RH_GEEglm_meta.csv')
+
+####RA vs IAR####
+RI_df<-combined_data[combined_data$group%in%c('RA','IAR'),]
+RI_df<-merge(RI_df,metabolites_data,by='Sample',all.x = TRUE)
+RI_df$group <- as.numeric(ifelse(RI_df$group == "RA", 1,
+                                 ifelse(RI_df$group == "IAR", 0, RI_df$group)))
+RI_df$gender <- as.numeric( ifelse(RI_df$gender == "Female", 1,
+                                   ifelse(RI_df$gender == "Male", 0, RI_df$gender)))
+table(RI_df$group)
+table(RI_df$gender)
+RI_df$ID<-c(1:nrow(RI_df))
+metabolite_list<-colnames(RI_df)[10:194]
+
+RI_results_list <- list()
+
+for (meta in metabolite_list) {
+  formula <- as.formula(paste0("`", meta, "`~ group  + gender + age + BMI + smoke + BP + BG + BL"))
+  
+  model <- geeglm(formula, data = RI_df, id = ID, family = gaussian, corstr = "exchangeable")
+  coef_summary <- summary(model)$coefficients
+  
+  est <- coef_summary[2, "Estimate"]
+  se  <- coef_summary[2, "Std.err"]
+  ci_lower <- if (!is.na(se)) est - 1.96 * se else NA
+  ci_upper <- if (!is.na(se)) est + 1.96 * se else NA
+  p_value <- coef_summary[2, "Pr(>|W|)"]
+
+  RI_results_list[[meta]] <- data.frame(
+    Metabolite = meta,
+    Estimate = est,
+    Std.err = se,
+    CI_lower = ci_lower,
+    CI_upper = ci_upper,
+    p_value = p_value,
+    stringsAsFactors = FALSE
+  )
+}
+
+RI_final_results <- do.call(rbind, RI_results_list)
+RI_final_results$sig <-ifelse(RI_final_results$p_value<0.05, 'sig','not sig')
+table(RI_final_results$sig)
+write.csv(RI_final_results,'RI_GEEglm_meta.csv')
+
+####IAR VS HC####
+IH_df<-combined_data[combined_data$group%in%c('IAR','HC'),]
+IH_df<-merge(IH_df,metabolites_data,by='Sample',all.x = TRUE)
+IH_df$group <- as.numeric(ifelse(IH_df$group == "IAR", 1,
+                                 ifelse(IH_df$group == "HC", 0, IH_df$group)))
+IH_df$gender <- as.numeric( ifelse(IH_df$gender == "Female", 1,
+                                   ifelse(IH_df$gender == "Male", 0, IH_df$gender)))
+table(IH_df$group)
+table(IH_df$gender)
+IH_df$ID<-c(1:nrow(IH_df))
+####move the metabolites####
+metabolite_list<-colnames(RI_df)[10:194]
+
+IH_results_list <- list()
+
+for (meta in metabolite_list) {
+  formula <- as.formula(paste0("`", meta, "`~ group  + gender + age + BMI + smoke + BP + BG + BL"))
+  
+  model <- geeglm(formula, data = IH_df, id = ID, family = gaussian, corstr = "exchangeable")
+  coef_summary <- summary(model)$coefficients
+  
+  est <- coef_summary[2, "Estimate"]
+  se  <- coef_summary[2, "Std.err"]
+  ci_lower <- if (!is.na(se)) est - 1.96 * se else NA
+  ci_upper <- if (!is.na(se)) est + 1.96 * se else NA
+  p_value <- coef_summary[2, "Pr(>|W|)"]
+
+
+  IH_results_list[[meta]] <- data.frame(
+    Metabolite = meta,
+    Estimate = est,
+    Std.err = se,
+    CI_lower = ci_lower,
+    CI_upper = ci_upper,
+    p_value = p_value,
+    stringsAsFactors = FALSE
+  )
+}
+
+IH_final_results <- do.call(rbind, IH_results_list)
+IH_final_results$sig <-ifelse(IH_final_results$p_value<0.05, 'sig','not sig')
+table(IH_final_results$sig)
+write.csv(IH_final_results,'IH_GEEglm_meta.csv')
+
+
+library(ggplot2)
+library(ggrepel)
+library(scales)
+squash_axis <- function(from, to, factor) {
+  
+  trans <- function(x) {    
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < to
+    ito <- !is_na & x >= to
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from)/factor
+    x[ito] <- from + (to - from)/factor + (x[ito] - to)
+    
+    return(x)
+  }
+  
+  inv <- function(x) {
+    # Initialize a logical vector to identify NAs
+    is_na <- is.na(x)
+    
+    # get indices for the relevant regions
+    isq <- !is_na & x > from & x < from + (to - from)/factor
+    ito <- !is_na & x >= from + (to - from)/factor
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from) * factor
+    x[ito] <- to + (x[ito] - (from + (to - from)/factor))
+    
+    return(x)
+  }
+  
+  # return the transformation and inverse transformation
+  return(scales::trans_new("squash_axis", trans, inv))
+}
+####plot RH####
+data1<-read.csv('RH_GEEglm_meta.csv',row.names = 1)
+data1$logp       <- -log10(data1$p_value)
+finite_vals     <- data1$logp[is.finite(data1$logp)]
+max_finite      <- if (length(finite_vals)>0) max(finite_vals, na.rm=TRUE) else 0
+cap             <- max_finite + 1  
+data1$logp_capped <- ifelse(is.infinite(data1$logp), cap, data1$logp)
+data1$color<- "no"
+data1$color[(data1$p_value<0.05)&(data1$Estimate>0)] <- "positive"
+data1$color[(data1$p_value<0.05)&(data1$Estimate<0)]  <- "negative"
+table(data1$color)
+
+extreme_points <- subset(data1, is.infinite(logp))    
+normal_points  <- subset(data1, is.finite(logp))      
+
+extreme_points <- extreme_points[order(abs(extreme_points$Estimate)), ]
+
+n_ext <- nrow(extreme_points)
+if(n_ext > 0) {
+
+  y_min_ext <- cap*1.01
+  y_max_ext <- cap *1.28
+
+  extreme_points$y_special <- seq(from = y_min_ext, to = y_max_ext, length.out = n_ext)
+} else {
+  extreme_points$y_special <- numeric(0)
+}
+
+
+top_10_indices <- order(-abs(data1$Estimate))[1:10]
+top_10_meta    <- data1$Metabolite[top_10_indices]
+
+significant_points <- data.frame(
+  estimate = data1$Estimate[top_10_indices],
+  logp     = sapply(top_10_meta, function(m) {
+
+    orig_logp <- data1$logp[ data1$Metabolite == m ]
+    if (is.infinite(orig_logp)) {
+
+      return(extreme_points$y_special[ match(m, extreme_points$Metabolite) ])
+    } else {
+
+      return(orig_logp)
+    }
+  }),
+  metabolic = top_10_meta,
+  stringsAsFactors = FALSE
+)
+
+y_tick_max <- floor(cap)
+
+gg <- ggplot() +
+  
+
+  geom_rect(aes(xmin = -Inf, xmax = Inf,
+                ymin = cap,      
+                ymax = cap * 1.3),
+            fill = "grey80", alpha = 0.5) +
+  geom_hline(yintercept = -log10(0.05), linetype = 2, color = "black", size = 1) +
+  
+  # 5.2 绘制“普通”点：y 用 logp_capped，x 用 Estimate
+  geom_point(data = normal_points,
+             aes(x = Estimate, y = logp_capped, color = color),
+             size = 3) +
+  
+  # 5.3 绘制“被截断”的点：用 y_special 作为纵坐标
+  geom_point(data = extreme_points,
+             aes(x = Estimate, y = y_special, color = color),
+             size = 3) +
+  
+  # 5.4 高亮前 10 个显著点（如果属于截断，用 y_special；否则用 logp_capped）
+  geom_point(data = significant_points,
+             aes(x = estimate, y = logp),
+             color = "gold", size = 4) +
+  
+  # 5.5 在灰色区块下方画一条虚线，提示“所有 p 极小，集中展示”
+  
+  
+  # 5.6 给前 10 个显著点加标签
+  geom_text_repel(data = significant_points,
+                  aes(x = estimate, y = logp, label = metabolic),
+                  size = 5,                     # 调大标签字体
+                  color = "black",
+                  box.padding   = unit(0.4, "lines"),
+                  segment.color = "black",
+                  segment.size  = 0.6,
+                  min.segment.length = 0.5) +
+  
+  # 5.7 美化：自定义配色、去网格、统一字体黑色并增大
+  scale_color_manual(values = c(
+    'positive' = '#DE3024',
+    'negative' = '#25108f',
+    'no'       = 'grey'
+  )) +
+  
+  # ** 关键：y 轴上限直接设为 cap * 1.3，与灰色区块 top 对齐 **
+  scale_y_continuous(
+    limits = c(0, cap * 1.3),  # 下限可以从 0 或最小 logp 开始
+    expand = c(0, 0) ,
+    breaks = seq(0, y_tick_max, by = 4)# 去掉额外留白
+  ) +
+  
+  # 5.8 主题设置：所有文字黑色，字体统一变大
+  theme(
+    plot.margin = margin(),
+    panel.background   = element_rect(fill = 'transparent', color = 'transparent'),
+    panel.grid.major   = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.line.x        = element_line(size = 0.7, color = "black"),
+    axis.line.y        = element_line(size = 0.7, color = "black"),
+    axis.text          = element_text(size = 14, color = "black"),   # 刻度文字
+    axis.title         = element_text(size = 16, color = "black"),   # 坐标轴标题
+    axis.ticks         = element_line(size = 0.7, color = "black"),
+    legend.position    = "none",
+    plot.title         = element_text(size = 18, color = "black", face = "bold")
+  ) +
+  
+  # 5.9 坐标轴及标题
+  labs(
+    x = "Coefficient",
+    y = "-log10(p value)",
+    title = ""   
+  )+
+  coord_trans(y = squash_axis(0, cap, 3))
+
+gg
+ggsave("RH_geeglm_meta.pdf", width = 5, height = 6)  
+
+####plot RI####
+data1<-read.csv('RI_GEEglm_meta.csv',row.names = 1)
+data1$logp       <- -log10(data1$p_value)
+finite_vals     <- data1$logp[is.finite(data1$logp)]
+max_finite      <- if (length(finite_vals)>0) max(finite_vals, na.rm=TRUE) else 0
+cap             <- max_finite + 1  # 设定灰色区块的上界
+data1$logp_capped <- ifelse(is.infinite(data1$logp), cap, data1$logp)
+data1$color<- "no"
+data1$color[(data1$p_value<0.05)&(data1$Estimate>0)] <- "positive"
+data1$color[(data1$p_value<0.05)&(data1$Estimate<0)]  <- "negative"
+table(data1$color)
+# —— 2. 找到所有被截断的点（p 极小）和普通点 —— 
+extreme_points <- subset(data1, is.infinite(logp))    # 原始 logp 为 Inf 的那些行
+normal_points  <- subset(data1, is.finite(logp))      # logp 有限的行
+
+# —— 3. 给被截断点设计一个“美观的 y 坐标” —— 
+#     根据 Estimate 的绝对值排序，然后在区块内均匀分配 y 值
+extreme_points <- extreme_points[order(abs(extreme_points$Estimate)), ]
+
+n_ext <- nrow(extreme_points)
+if(n_ext > 0) {
+  # 目标区间 [cap * 0.8, cap * 0.98]，你可以根据需要调节
+  y_min_ext <- cap*1.01
+  y_max_ext <- cap *1.28
+  
+  # 在这个范围内等距分配
+  extreme_points$y_special <- seq(from = y_min_ext, to = y_max_ext, length.out = n_ext)
+} else {
+  extreme_points$y_special <- numeric(0)
+}
+
+# —— 先找绝对估计值最大的前 10 个下标 —— 
+top_10_indices <- order(-abs(data1$Estimate))[1:10]
+top_10_meta    <- data1$Metabolite[top_10_indices]
+# —— 构建 significant_points 时，把 logp 分两种情况 —— 
+significant_points <- data.frame(
+  estimate = data1$Estimate[top_10_indices],
+  logp     = sapply(top_10_meta, function(m) {
+    # 如果原来的 -log10(p) = Inf，就匹配 extreme_points 中的 y_special
+    orig_logp <- data1$logp[ data1$Metabolite == m ]
+    if (is.infinite(orig_logp)) {
+      # 匹配到 extreme_points 那一行，拿 y_special
+      return(extreme_points$y_special[ match(m, extreme_points$Metabolite) ])
+    } else {
+      # 否则就用原本的有限值（或者用 logp_capped）
+      return(orig_logp)
+    }
+  }),
+  metabolic = top_10_meta,
+  stringsAsFactors = FALSE
+)
+
+y_tick_max <- floor(cap)
+# —— 5. 开始绘图 —— 
+gg <- ggplot() +
+  
+  # 5.1 先画灰色半透明区块——区块范围 x 先定极限，y 从 cap 到 cap*1.3
+  geom_rect(aes(xmin = -Inf, xmax = Inf,
+                ymin = cap,      # 灰色区块下界
+                ymax = cap * 1.3), # 灰色区块上界
+            fill = "grey80", alpha = 0.5) +
+  geom_hline(yintercept = -log10(0.05), linetype = 2, color = "black", size = 1) +
+  
+  # 5.2 绘制“普通”点：y 用 logp_capped，x 用 Estimate
+  geom_point(data = normal_points,
+             aes(x = Estimate, y = logp_capped, color = color),
+             size = 3) +
+  
+  # 5.3 绘制“被截断”的点：用 y_special 作为纵坐标
+  geom_point(data = extreme_points,
+             aes(x = Estimate, y = y_special, color = color),
+             size = 3) +
+  
+  # 5.4 高亮前 10 个显著点（如果属于截断，用 y_special；否则用 logp_capped）
+  geom_point(data = significant_points,
+             aes(x = estimate, y = logp),
+             color = "gold", size = 4) +
+  
+  # 5.5 在灰色区块下方画一条虚线，提示“所有 p 极小，集中展示”
+  
+  
+  # 5.6 给前 10 个显著点加标签
+  geom_text_repel(data = significant_points,
+                  aes(x = estimate, y = logp, label = metabolic),
+                  size = 5,                     # 调大标签字体
+                  color = "black",
+                  box.padding   = unit(0.4, "lines"),
+                  segment.color = "black",
+                  segment.size  = 0.6,
+                  min.segment.length = 0.5) +
+  
+  # 5.7 美化：自定义配色、去网格、统一字体黑色并增大
+  scale_color_manual(values = c(
+    'positive' = '#DE3024',
+    'negative' = '#25108f',
+    'no'       = 'grey'
+  )) +
+  
+  # ** 关键：y 轴上限直接设为 cap * 1.3，与灰色区块 top 对齐 **
+  scale_y_continuous(
+    limits = c(0, cap * 1.3),  # 下限可以从 0 或最小 logp 开始
+    expand = c(0, 0) ,
+    breaks = seq(0, y_tick_max, by = 4)# 去掉额外留白
+  ) +
+  
+  # 5.8 主题设置：所有文字黑色，字体统一变大
+  theme(
+    plot.margin = margin(),
+    panel.background   = element_rect(fill = 'transparent', color = 'transparent'),
+    panel.grid.major   = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.line.x        = element_line(size = 0.7, color = "black"),
+    axis.line.y        = element_line(size = 0.7, color = "black"),
+    axis.text          = element_text(size = 14, color = "black"),   # 刻度文字
+    axis.title         = element_text(size = 16, color = "black"),   # 坐标轴标题
+    axis.ticks         = element_line(size = 0.7, color = "black"),
+    legend.position    = "none",
+    plot.title         = element_text(size = 18, color = "black", face = "bold")
+  ) +
+  
+  # 5.9 坐标轴及标题
+  labs(
+    x = "Coefficient",
+    y = "-log10(p value)",
+    title = ""   # 如果需要标题，可以在这里填写；否则保持空
+  )+
+  coord_trans(y = squash_axis(0, cap, 3))
+
+gg
+ggsave("RI_geeglm_meta.pdf", width = 5, height = 6) 
+
+####plot IH####
+data1<-read.csv('IH_GEEglm_meta.csv',row.names = 1)
+data1$logp       <- -log10(data1$p_value)
+finite_vals     <- data1$logp[is.finite(data1$logp)]
+max_finite      <- if (length(finite_vals)>0) max(finite_vals, na.rm=TRUE) else 0
+cap             <- max_finite + 1  # 设定灰色区块的上界
+data1$logp_capped <- ifelse(is.infinite(data1$logp), cap, data1$logp)
+data1$color<- "no"
+data1$color[(data1$p_value<0.05)&(data1$Estimate>0)] <- "positive"
+data1$color[(data1$p_value<0.05)&(data1$Estimate<0)]  <- "negative"
+table(data1$color)
+# —— 2. 找到所有被截断的点（p 极小）和普通点 —— 
+extreme_points <- subset(data1, is.infinite(logp))    # 原始 logp 为 Inf 的那些行
+normal_points  <- subset(data1, is.finite(logp))      # logp 有限的行
+
+# —— 3. 给被截断点设计一个“美观的 y 坐标” —— 
+#     根据 Estimate 的绝对值排序，然后在区块内均匀分配 y 值
+extreme_points <- extreme_points[order(abs(extreme_points$Estimate)), ]
+
+n_ext <- nrow(extreme_points)
+if(n_ext > 0) {
+  # 目标区间 [cap * 0.8, cap * 0.98]，你可以根据需要调节
+  y_min_ext <- cap*1.01
+  y_max_ext <- cap *1.28
+  
+  # 在这个范围内等距分配
+  extreme_points$y_special <- seq(from = y_min_ext, to = y_max_ext, length.out = n_ext)
+} else {
+  extreme_points$y_special <- numeric(0)
+}
+
+# —— 先找绝对估计值最大的前 10 个下标 —— 
+top_10_indices <- order(-abs(data1$Estimate))[1:10]
+top_10_meta    <- data1$Metabolite[top_10_indices]
+# —— 构建 significant_points 时，把 logp 分两种情况 —— 
+significant_points <- data.frame(
+  estimate = data1$Estimate[top_10_indices],
+  logp     = sapply(top_10_meta, function(m) {
+    # 如果原来的 -log10(p) = Inf，就匹配 extreme_points 中的 y_special
+    orig_logp <- data1$logp[ data1$Metabolite == m ]
+    if (is.infinite(orig_logp)) {
+      # 匹配到 extreme_points 那一行，拿 y_special
+      return(extreme_points$y_special[ match(m, extreme_points$Metabolite) ])
+    } else {
+      # 否则就用原本的有限值（或者用 logp_capped）
+      return(orig_logp)
+    }
+  }),
+  metabolic = top_10_meta,
+  stringsAsFactors = FALSE
+)
+
+y_tick_max <- floor(cap)
+# —— 5. 开始绘图 —— 
+gg <- ggplot() +
+  
+  # 5.1 先画灰色半透明区块——区块范围 x 先定极限，y 从 cap 到 cap*1.3
+  geom_rect(aes(xmin = -Inf, xmax = Inf,
+                ymin = cap,      # 灰色区块下界
+                ymax = cap * 1.3), # 灰色区块上界
+            fill = "grey80", alpha = 0.5) +
+  geom_hline(yintercept = -log10(0.05), linetype = 2, color = "black", size = 1) +
+  
+  # 5.2 绘制“普通”点：y 用 logp_capped，x 用 Estimate
+  geom_point(data = normal_points,
+             aes(x = Estimate, y = logp_capped, color = color),
+             size = 3) +
+  
+  # 5.3 绘制“被截断”的点：用 y_special 作为纵坐标
+  geom_point(data = extreme_points,
+             aes(x = Estimate, y = y_special, color = color),
+             size = 3) +
+  
+  # 5.4 高亮前 10 个显著点（如果属于截断，用 y_special；否则用 logp_capped）
+  geom_point(data = significant_points,
+             aes(x = estimate, y = logp),
+             color = "gold", size = 4) +
+  
+  # 5.5 在灰色区块下方画一条虚线，提示“所有 p 极小，集中展示”
+  
+  
+  # 5.6 给前 10 个显著点加标签
+  geom_text_repel(data = significant_points,
+                  aes(x = estimate, y = logp, label = metabolic),
+                  size = 5,                     # 调大标签字体
+                  color = "black",
+                  box.padding   = unit(0.4, "lines"),
+                  segment.color = "black",
+                  segment.size  = 0.6,
+                  min.segment.length = 0.5) +
+  
+  # 5.7 美化：自定义配色、去网格、统一字体黑色并增大
+  scale_color_manual(values = c(
+    'positive' = '#DE3024',
+    'negative' = '#25108f',
+    'no'       = 'grey'
+  )) +
+  
+  # ** 关键：y 轴上限直接设为 cap * 1.3，与灰色区块 top 对齐 **
+  scale_y_continuous(
+    limits = c(0, cap * 1.3),  # 下限可以从 0 或最小 logp 开始
+    expand = c(0, 0) ,
+    breaks = seq(0, y_tick_max, by = 4)# 去掉额外留白
+  ) +
+  
+  # 5.8 主题设置：所有文字黑色，字体统一变大
+  theme(
+    plot.margin = margin(),
+    panel.background   = element_rect(fill = 'transparent', color = 'transparent'),
+    panel.grid.major   = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.line.x        = element_line(size = 0.7, color = "black"),
+    axis.line.y        = element_line(size = 0.7, color = "black"),
+    axis.text          = element_text(size = 14, color = "black"),   # 刻度文字
+    axis.title         = element_text(size = 16, color = "black"),   # 坐标轴标题
+    axis.ticks         = element_line(size = 0.7, color = "black"),
+    legend.position    = "none",
+    plot.title         = element_text(size = 18, color = "black", face = "bold")
+  ) +
+  
+  # 5.9 坐标轴及标题
+  labs(
+    x = "Coefficient",
+    y = "-log10(p value)",
+    title = ""   # 如果需要标题，可以在这里填写；否则保持空
+  )+
+  coord_trans(y = squash_axis(0, cap, 3))
+
+gg
+ggsave("IH_geeglm_meta.pdf", width = 5, height = 6) 

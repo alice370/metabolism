@@ -1,0 +1,186 @@
+,Metabolite,Estimate,CI_lower,CI_upper,p_value,sig
+Acetoacetate,Acetoacetate,-0.037887925,-0.143920967,0.068145118,0.48370822,not sig
+4-Aminobutanoate,4-Aminobutanoate,-0.078613701,-0.203540697,0.046313294,0.217432839,not sig
+Malonic acid,Malonic acid,-0.064601667,-0.175557077,0.046353742,0.253798123,not sig
+3-Hydroxybutyric acid,3-Hydroxybutyric acid,-0.0611054,-0.170847689,0.04863689,0.275121567,not sig
+Uracil,Uracil,-0.044176941,-0.161702314,0.073348432,0.46127447,not sig
+Maleic acid,Maleic acid,-0.079098003,-0.184433541,0.026237536,0.141076845,not sig
+N-Acetylglycine,N-Acetylglycine,-0.076665956,-0.18685683,0.033524917,0.172667775,not sig
+Guanidoacetic acid,Guanidoacetic acid,-0.098846594,-0.200080875,0.002387687,0.055649306,not sig
+2-Hydroxyisovaleric acid,2-Hydroxyisovaleric acid,-0.087954943,-0.197874864,0.021964979,0.116802064,not sig
+Succinic acid,Succinic acid,-0.099840822,-0.215742926,0.016061281,0.091336291,not sig
+Methylmalonic acid,Methylmalonic acid,-0.047929165,-0.150520921,0.05466259,0.359835039,not sig
+Benzoic acid,Benzoic acid,-0.028983554,-0.085563566,0.027596458,0.315366399,not sig
+Methyl-4-methyl-2-oxopentanoate,Methyl-4-methyl-2-oxopentanoate,-0.02208091,-0.133359543,0.089197723,0.697334677,not sig
+2-Hydroxyisocaproate,2-Hydroxyisocaproate,-0.080277608,-0.196278524,0.035723309,0.174970651,not sig
+Glutarate,Glutarate,-0.077821523,-0.185169768,0.029526723,0.155348373,not sig
+Malate,Malate,-0.102349497,-0.209062051,0.004363058,0.060126712,not sig
+Adenine,Adenine,-0.025755944,-0.097591448,0.046079559,0.482218061,not sig
+Hypoxanthine,Hypoxanthine,0.00872551,-0.107495656,0.124946676,0.883013251,not sig
+Adipic acid,Adipic acid,-0.013184876,-0.128111578,0.101741826,0.822088601,not sig
+Mevalonic acid,Mevalonic acid,-0.184439262,-0.294087299,-0.074791224,0.000977509,sig
+Xanthine,Xanthine,-0.019481402,-0.121398452,0.082435649,0.707918415,not sig
+Dopamine,Dopamine,0.062704947,-0.045366844,0.170776739,0.25544519,not sig
+Orotic acid,Orotic acid,-0.044177379,-0.158689777,0.070335019,0.449563911,not sig
+Aminoadipic acid,Aminoadipic acid,-0.042755355,-0.149185029,0.063674318,0.431059999,not sig
+Phenylpyruvate,Phenylpyruvate,-0.074416812,-0.205742786,0.056909163,0.266719827,not sig
+Phosphoenolpyruvic acid,Phosphoenolpyruvic acid,-0.050695732,-0.170354116,0.068962652,0.406315909,not sig
+Homogentisic acid,Homogentisic acid,-0.025444124,-0.148907104,0.098018857,0.686263713,not sig
+Uric acid,Uric acid,0.007284745,-0.088386317,0.102955807,0.881363006,not sig
+Dihydroxyacetone phosphate,Dihydroxyacetone phosphate,-0.033794216,-0.152483248,0.084894816,0.576797306,not sig
+Glyceraldehyde 3-phosphate,Glyceraldehyde 3-phosphate,-0.072075022,-0.181158874,0.03700883,0.195309303,not sig
+Shikimic acid,Shikimic acid,-0.070515686,-0.176663633,0.035632261,0.192896682,not sig
+Citrulline,Citrulline,-0.038153245,-0.141827528,0.065521039,0.470724373,not sig
+Hippuric acid,Hippuric acid,-0.036247761,-0.153264246,0.080768724,0.543756739,not sig
+Myo-Inositol,Myo-Inositol,-0.041631744,-0.16167078,0.078407292,0.496653888,not sig
+Lactose,Lactose,-0.076466738,-0.186433067,0.033499591,0.172909167,not sig
+4-Hydroxyphenylpyruvic acid,4-Hydroxyphenylpyruvic acid,-0.119652347,-0.226254611,-0.013050083,0.027811142,sig
+4-Pyridoxic acid,4-Pyridoxic acid,-0.091765631,-0.202250142,0.01871888,0.103540523,not sig
+2-Phosphoglyceric acid,2-Phosphoglyceric acid,-0.013293032,-0.124794957,0.098208893,0.815243348,not sig
+Azelaic acid,Azelaic acid,-0.078269655,-0.166867323,0.010328012,0.083359281,not sig
+4-Hydroxy-2-quinolinecarboxylic acid,4-Hydroxy-2-quinolinecarboxylic acid,-0.082670762,-0.195427104,0.030085581,0.150708345,not sig
+Glucuronic acid,Glucuronic acid,-0.081984426,-0.203612388,0.039643537,0.186449459,not sig
+Indoxyl sulfate,Indoxyl sulfate,-0.023162184,-0.138655631,0.092331264,0.694262213,not sig
+Pantothenic acid,Pantothenic acid,-0.089099405,-0.198464766,0.020265956,0.110309836,not sig
+Cystathionine,Cystathionine,-0.118007319,-0.227305156,-0.008709483,0.034329152,sig
+3-Nitrotyrosine,3-Nitrotyrosine,-0.0823322,-0.202133635,0.037469235,0.177984052,not sig
+Myristic acid,Myristic acid,-0.097980423,-0.192279293,-0.003681553,0.041698066,sig
+Ribose 5-phosphate,Ribose 5-phosphate,-0.112883752,-0.249178555,0.02341105,0.104517762,not sig
+Biotin,Biotin,-0.107913812,-0.212350555,-0.003477068,0.042841153,sig
+Fructose 6-phosphate,Fructose 6-phosphate,-0.051875955,-0.155581798,0.051829887,0.326871274,not sig
+Glucose 6-phosphate,Glucose 6-phosphate,-0.047523338,-0.158943963,0.063897288,0.403164499,not sig
+Heptadecanoic acid,Heptadecanoic acid,-0.059601314,-0.168989417,0.04978679,0.285553172,not sig
+Linolenate,Linolenate,-0.082628878,-0.189247018,0.023989261,0.128763328,not sig
+Alpha-Linolenic acid,Alpha-Linolenic acid,-0.07642385,-0.180701297,0.027853597,0.150870498,not sig
+Xanthosine,Xanthosine,-0.151689926,-0.260118779,-0.043261072,0.006106576,sig
+Argininosuccinic acid,Argininosuccinic acid,-0.062318059,-0.182630442,0.057994324,0.31000153,not sig
+13-HODE,13-HODE,-0.032502257,-0.078231135,0.013226621,0.163592698,not sig
+Arachidonic acid,Arachidonic acid,-0.050253829,-0.135830295,0.035322638,0.249737086,not sig
+dCMP,dCMP,-0.056046007,-0.156597311,0.044505298,0.274622682,not sig
+Glutathione,Glutathione,0.076261366,-0.019076939,0.171599672,0.116925655,not sig
+N-Acetylneuraminic acid,N-Acetylneuraminic acid,-0.023940588,-0.130402843,0.082521668,0.659391867,not sig
+12-HETE,12-HETE,-0.018563503,-0.056883936,0.019756929,0.342376768,not sig
+5-Thymidylic acid,5-Thymidylic acid,0.018765279,-0.091661672,0.129192231,0.73908115,not sig
+Cytidine monophosphate,Cytidine monophosphate,-0.113909175,-0.234171695,0.006353346,0.063388701,not sig
+"Glucose 1,6-bisphosphate","Glucose 1,6-bisphosphate",-0.083434278,-0.188002312,0.021133756,0.117847263,not sig
+"Fructose 1,6-bisphosphate","Fructose 1,6-bisphosphate",-0.012548621,-0.133718007,0.108620765,0.839148506,not sig
+Alpha-Lactose,Alpha-Lactose,-0.046984326,-0.144107172,0.050138519,0.343041288,not sig
+Sucrose,Sucrose,-0.052448804,-0.149105159,0.044207552,0.287528908,not sig
+"3',5'-Cyclic GMP","3',5'-Cyclic GMP",-0.043465602,-0.156629879,0.069698675,0.451556763,not sig
+Gibberellin A3,Gibberellin A3,-0.014754236,-0.099354707,0.069846235,0.732484845,not sig
+Adenosine monophosphate,Adenosine monophosphate,-0.013225432,-0.110117954,0.08366709,0.789059604,not sig
+Inosinic acid,Inosinic acid,-0.015340409,-0.134653417,0.1039726,0.801038974,not sig
+Prostaglandin E2,Prostaglandin E2,-0.029599526,-0.073295116,0.014096065,0.184273942,not sig
+Orotidylic acid,Orotidylic acid,-0.006654173,-0.118971485,0.10566314,0.907558201,not sig
+S-Adenosylhomocysteine,S-Adenosylhomocysteine,0.014184977,-0.105921473,0.134291426,0.816939896,not sig
+Uridine 5'-diphosphate,Uridine 5'-diphosphate,-0.118570854,-0.224335806,-0.012805903,0.027997984,sig
+Adenosine 5'-diphosphate,Adenosine 5'-diphosphate,-0.041512352,-0.149127586,0.066102882,0.449609682,not sig
+Folic acid,Folic acid,-0.068684215,-0.172168742,0.034800313,0.193299174,not sig
+Guanosine 5'-diphosphate,Guanosine 5'-diphosphate,-0.147376918,-0.261551115,-0.033202721,0.01140681,sig
+5-Methyltetrahydrofolic acid,5-Methyltetrahydrofolic acid,-0.051414889,-0.156663579,0.053833801,0.338326636,not sig
+Glycocholic acid,Glycocholic acid,-0.147111801,-0.247208266,-0.047015335,0.003969033,sig
+Adenosine 5'-triphosphate,Adenosine 5'-triphosphate,-0.055641702,-0.161669335,0.050385932,0.303677827,not sig
+Taurocholic acid,Taurocholic acid,-0.061436245,-0.162508291,0.0396358,0.233505111,not sig
+Oxidized glutathione,Oxidized glutathione,-0.009972025,-0.07726736,0.05732331,0.77148065,not sig
+NAD,NAD,0.013439082,-0.086508396,0.11338656,0.792130984,not sig
+Lactic acid,Lactic acid,-0.088582875,-0.181714331,0.004548582,0.062283415,not sig
+Fumarate,Fumarate,-0.07023664,-0.188644542,0.048171261,0.24498227,not sig
+Citraconic acid,Citraconic acid,-0.094591232,-0.217739222,0.028556758,0.132196586,not sig
+Allantoin,Allantoin,-0.0588175,-0.165857819,0.048222819,0.281480783,not sig
+Aconitic acid,Aconitic acid,-0.14891031,-0.269813969,-0.028006651,0.015777469,sig
+Citric acid,Citric acid,-0.200346597,-0.33578729,-0.064905904,0.00374031,sig
+Chenodeoxycholic acid glycine conjugate,Chenodeoxycholic acid glycine conjugate,-0.094826821,-0.201155106,0.011501464,0.080466101,not sig
+Malondialdehyde,Malondialdehyde,-0.066977577,-0.157538879,0.023583726,0.14717507,not sig
+2-Methylpropanoate,2-Methylpropanoate,-0.015721046,-0.109642471,0.078200379,0.742855131,not sig
+Glyceric acid,Glyceric acid,-0.083168233,-0.193500613,0.027164146,0.139557083,not sig
+Alpha-Ketoisovaleric acid,Alpha-Ketoisovaleric acid,-0.00381203,-0.108958979,0.10133492,0.943351246,not sig
+Methylsuccinic acid,Methylsuccinic acid,-0.087446727,-0.207986813,0.033093358,0.155056155,not sig
+Oxalacetic acid,Oxalacetic acid,-0.059809868,-0.156129487,0.03650975,0.223579069,not sig
+Oxoglutaric acid,Oxoglutaric acid,0.038569815,-0.077336814,0.154476445,0.514258058,not sig
+2-Hydroxyglutarate,2-Hydroxyglutarate,-0.023754957,-0.136710454,0.089200539,0.680196339,not sig
+Fructose,Fructose,-0.074181319,-0.177693777,0.029331139,0.160135122,not sig
+Glucose 1-phosphate,Glucose 1-phosphate,-0.08237037,-0.183869257,0.019128518,0.111695643,not sig
+Geranyl-PP,Geranyl-PP,-0.030749998,-0.139531699,0.078031703,0.57954781,not sig
+Adenylsuccinic acid,Adenylsuccinic acid,-0.070327066,-0.164406963,0.023752832,0.142880325,not sig
+Glycerol 3-phosphate,Glycerol 3-phosphate,-0.057912095,-0.137426787,0.021602598,0.15343408,not sig
+Glyceraldehyde,Glyceraldehyde,-0.066697578,-0.176520246,0.04312509,0.233909431,not sig
+Pyruvic acid,Pyruvic acid,-0.007569782,-0.112315897,0.097176333,0.887360349,not sig
+Methyl-3-methyl-2-oxopentanoate,Methyl-3-methyl-2-oxopentanoate,-0.071548745,-0.171739808,0.028642318,0.161608828,not sig
+Isocitric acid,Isocitric acid,0.013468107,-0.09129331,0.118229524,0.801058674,not sig
+Homovanillic acid,Homovanillic acid,-0.169579097,-0.285532118,-0.053626076,0.004150868,sig
+Trimethylamine,Trimethylamine,0.004354319,-0.077878081,0.086586719,0.917340203,not sig
+Glycine,Glycine,-0.036359877,-0.122869768,0.050150015,0.410062996,not sig
+Trimethylamine N-oxide,Trimethylamine N-oxide,0.02984061,-0.055749239,0.11543046,0.494387381,not sig
+Sarcosine,Sarcosine,-0.001930788,-0.092616504,0.088754928,0.966713681,not sig
+Alanine,Alanine,-0.034496048,-0.116764377,0.047772281,0.411162084,not sig
+Cadaverine,Cadaverine,-0.068948156,-0.148106166,0.010209854,0.087785283,not sig
+3-Aminoisobutyric acid,3-Aminoisobutyric acid,-0.000488022,-0.084810164,0.08383412,0.990949257,not sig
+Choline,Choline,-0.021177111,-0.10364757,0.061293349,0.614755459,not sig
+Dimethylglycine,Dimethylglycine,0.01491023,-0.068781795,0.098602256,0.726949961,not sig
+Serine,Serine,-0.027364542,-0.110642074,0.05591299,0.519546067,not sig
+Cytosine,Cytosine,-0.024647817,-0.129245115,0.07994948,0.644178883,not sig
+Creatinine,Creatinine,0.031618972,-0.052110791,0.115348734,0.459204631,not sig
+Proline,Proline,0.026586922,-0.058424491,0.111598335,0.539889016,not sig
+5-Aminopentanoic acid,5-Aminopentanoic acid,-0.060827278,-0.137581652,0.015927097,0.120354919,not sig
+Betaine,Betaine,0.099086543,0.010925244,0.187247841,0.027602519,sig
+Valine,Valine,-0.027704815,-0.093618421,0.038208791,0.410037609,not sig
+Indole,Indole,0.029702964,-0.072844154,0.132250081,0.570226706,not sig
+Homoserine,Homoserine,-0.03462015,-0.118416907,0.049176608,0.418076541,not sig
+Threonine,Threonine,-0.034945064,-0.118722712,0.048832584,0.413614801,not sig
+Cysteine,Cysteine,-0.09049639,-0.191542554,0.010549774,0.079196852,not sig
+Niacinamide,Niacinamide,-0.056528219,-0.146961985,0.033905548,0.220517129,not sig
+Taurine,Taurine,-0.049754408,-0.159620853,0.060112038,0.374750162,not sig
+Pyroglutamic acid,Pyroglutamic acid,-0.036598633,-0.133235248,0.060037981,0.457905826,not sig
+Pipecolic acid,Pipecolic acid,-0.010292998,-0.099518162,0.078932166,0.821119579,not sig
+N-Acetylputrescine,N-Acetylputrescine,0.013432351,-0.075127844,0.101992546,0.766250741,not sig
+Creatine,Creatine,0.005545721,-0.098203008,0.109294449,0.9165594,not sig
+4-Hydroxyproline,4-Hydroxyproline,-0.009942819,-0.071436477,0.051550839,0.751312259,not sig
+5-Aminolevulinic acid,5-Aminolevulinic acid,0.023530072,-0.063783072,0.110843217,0.597359425,not sig
+Isoleucine,Isoleucine,-0.018776673,-0.100898802,0.063345456,0.654051567,not sig
+Leucine,Leucine,0.003084899,-0.067031112,0.073200911,0.931280193,not sig
+Ornithine,Ornithine,-0.021111782,-0.104367702,0.062144139,0.619181429,not sig
+Asparagine,Asparagine,-0.019708621,-0.089277737,0.049860495,0.578717326,not sig
+Homocysteine,Homocysteine,-0.009191913,-0.098384045,0.080000219,0.839922524,not sig
+N-Methylnicotinamide,N-Methylnicotinamide,0.003960546,-0.082098457,0.09001955,0.928126911,not sig
+Tyramine,Tyramine,-0.007488063,-0.108232961,0.093256836,0.884173338,not sig
+4-Acetamidobutanoic acid,4-Acetamidobutanoic acid,-0.008332462,-0.093376329,0.076711405,0.8477127,not sig
+Spermidine,Spermidine,-0.020095626,-0.126403954,0.086212702,0.711008634,not sig
+Glutamine,Glutamine,0.040532777,-0.054003869,0.135069424,0.400709966,not sig
+Lysine,Lysine,-0.001319756,-0.080417555,0.077778044,0.973911574,not sig
+Glutamate,Glutamate,-0.031831062,-0.107600818,0.043938695,0.410280088,not sig
+Methionine,Methionine,-0.020131209,-0.099279335,0.059016917,0.618115384,not sig
+Histidine,Histidine,-0.008227086,-0.091679385,0.075225214,0.846782601,not sig
+Tryptamine,Tryptamine,-0.064658967,-0.171837892,0.042519959,0.237035132,not sig
+Carnitine,Carnitine,-0.008457019,-0.094432829,0.07751879,0.847119051,not sig
+Phenylalanine,Phenylalanine,-0.025566617,-0.109548109,0.058414875,0.550717128,not sig
+1-Methyl-histidine,1-Methyl-histidine,-0.044885663,-0.135349506,0.04557818,0.330802894,not sig
+Arginine,Arginine,-0.013026318,-0.094195796,0.068143161,0.753105936,not sig
+Indoleacetic acid,Indoleacetic acid,-0.015590506,-0.100531749,0.069350738,0.719036044,not sig
+Glucosamine,Glucosamine,0.016865895,-0.062104572,0.095836363,0.675507409,not sig
+Tyrosine,Tyrosine,-0.003033485,-0.100883594,0.094816625,0.951548253,not sig
+N8-Acetylspermidine,N8-Acetylspermidine,-0.014435704,-0.106767875,0.077896467,0.759272054,not sig
+Acetylcarnitine,Acetylcarnitine,-0.067162994,-0.166748285,0.032422296,0.186209233,not sig
+Tryptophan,Tryptophan,-0.021601099,-0.107084384,0.063882186,0.620402543,not sig
+Indolelactic acid,Indolelactic acid,-0.043962313,-0.128728714,0.040804087,0.309385238,not sig
+Kynurenine,Kynurenine,-0.021075022,-0.107252731,0.065102687,0.631708158,not sig
+3-Hydroxy-kynurenin,3-Hydroxy-kynurenin,0.009389559,-0.107916344,0.126695461,0.875335491,not sig
+Melatonin,Melatonin,0.013309197,-0.077434186,0.104052581,0.773752248,not sig
+Cystine,Cystine,-0.027669783,-0.106195341,0.050855776,0.48979275,not sig
+Cytidine,Cytidine,-0.026609779,-0.122596302,0.069376745,0.586882469,not sig
+N1-Acetylspermine,N1-Acetylspermine,-0.011316323,-0.115698176,0.093065529,0.831725572,not sig
+Uridine,Uridine,-0.060579398,-0.168331439,0.047172643,0.270490439,not sig
+Adenosine,Adenosine,-0.040578596,-0.149095647,0.067938454,0.46360873,not sig
+Inosine,Inosine,-0.047393406,-0.163424342,0.068637531,0.423379686,not sig
+6-Methyladenosine,6-Methyladenosine,0.018153245,-0.072962612,0.109269102,0.696169956,not sig
+Guanosine monophosphate,Guanosine monophosphate,0.055078685,-0.032082481,0.142239852,0.215508964,not sig
+S-Adenosylmethionine,S-Adenosylmethionine,0.039077233,-0.018671735,0.096826201,0.184746533,not sig
+Alpha-Tocopherol,Alpha-Tocopherol,-0.023217087,-0.112047124,0.065612951,0.60845791,not sig
+Bilirubin,Bilirubin,-0.024204264,-0.104298784,0.055890256,0.553646597,not sig
+1-Methyladenosine,1-Methyladenosine,0.027865682,-0.038044118,0.093775483,0.40729749,not sig
+Serotonin,Serotonin,-0.022357248,-0.109924462,0.065209965,0.616780806,not sig
+Xanthurenic acid,Xanthurenic acid,-0.042085255,-0.125183982,0.041013473,0.32088555,not sig
+4-Trimethylammoniobutanoic acid,4-Trimethylammoniobutanoic acid,-0.081605634,-0.185841048,0.02262978,0.12491188,not sig
+Epinephrine,Epinephrine,-0.017297112,-0.094220488,0.059626264,0.659409419,not sig
+Indolepyruvate,Indolepyruvate,-0.017163459,-0.125162146,0.090835228,0.755429068,not sig
+1-Methylguanosine,1-Methylguanosine,0.00767728,-0.07591847,0.09127303,0.85715037,not sig
+Normetanephrine,Normetanephrine,-0.003903933,-0.117300148,0.109492281,0.94620146,not sig
